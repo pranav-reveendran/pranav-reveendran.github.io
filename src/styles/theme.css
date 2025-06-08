@@ -1,0 +1,270 @@
+/* src/styles/theme.css - Claude Design System */
+
+/* ▼ FONT IMPORTS ▼ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Using Google Fonts directly instead of @font-face to prevent OTS parsing errors */
+
+:root {
+  /* Shared tokens */
+  --radius: 12px;
+  --duration: 0.25s;
+  --easing: ease;
+
+  /* ▼ CLAUDE LIGHT MODE COLORS ▼ */
+  
+  /* Background Colors */
+  --background-primary: #ffffff;      /* Main page background */
+  --background-secondary: #fafaf9;    /* Cards, sections, modals */
+  --background-tertiary: #f5f4f2;     /* Code blocks, nested elements */
+  
+  /* Text Colors */
+  --text-primary: #1a1a1a;           /* Main body text, headings */
+  --text-secondary: #4a4a4a;         /* Subtitles, descriptions */
+  --text-tertiary: #6a6a6a;          /* Muted text, timestamps, meta info */
+  
+  /* Accent Colors */
+  --accent-primary: #da7756;          /* Primary buttons, links, key highlights */
+  --accent-hover: #c76646;           /* Button/link hover states */
+  --accent-light: #f5e6e0;           /* Accent backgrounds, badges */
+  
+  /* UI Colors */
+  --border: #e5e5e5;                 /* Dividers, card borders, input borders */
+  --shadow: rgba(0, 0, 0, 0.08);     /* Card shadows, elevation */
+  
+  /* ▼ DESIGN TOKENS ▼ */
+  --bg: var(--background-primary);
+  --surface: var(--background-secondary);
+  --text: var(--text-primary);
+  --accent: var(--accent-primary);
+  --accent-2: var(--accent-light);
+  --overlay: var(--shadow);
+
+  /* Typography */
+  --font-primary: 'Inter', 'Nunito Sans', system-ui, sans-serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Crimson Text', system-ui, serif;
+
+  /* Semantic colors */
+  --success: #008844;
+  --warning: #ff9900;
+  --error: #cc0000;
+  --info: var(--accent-primary);
+}
+
+/* ▼ CLAUDE DARK MODE COLORS ▼ */
+[data-theme="dark"] {
+  /* Background Colors */
+  --background-primary: #1a1a1a;      /* Main page background */
+  --background-secondary: #252525;    /* Cards, sections, modals */
+  --background-tertiary: #2f2f2f;     /* Code blocks, nested elements */
+  
+  /* Text Colors */
+  --text-primary: #f5f5f5;           /* Main body text, headings */
+  --text-secondary: #c0c0c0;         /* Subtitles, descriptions */
+  --text-tertiary: #9a9a9a;          /* Muted text, timestamps, meta info */
+  
+  /* Accent Colors */
+  --accent-primary: #e88968;          /* Primary buttons, links, key highlights */
+  --accent-hover: #da7756;           /* Button/link hover states */
+  --accent-light: #3a2925;           /* Accent backgrounds, badges */
+  
+  /* UI Colors */
+  --border: #3a3a3a;                 /* Dividers, card borders, input borders */
+  --shadow: rgba(0, 0, 0, 0.3);      /* Card shadows, elevation */
+
+  /* ▼ DESIGN TOKENS ▼ */
+  --bg: var(--background-primary);
+  --surface: var(--background-secondary);
+  --text: var(--text-primary);
+  --accent: var(--accent-primary);
+  --accent-2: var(--accent-light);
+  --overlay: var(--shadow);
+
+  /* Dark semantic colors */
+  --success: #00aa55;
+  --warning: #ffaa33;
+  --error: #ff4444;
+  --info: var(--accent-primary);
+}
+
+/* ▼ COLORBLIND-FRIENDLY THEME - High Contrast ▼ */
+[data-theme="colorblind"] {
+  --bg: #000000;                      /* Pure black */
+  --surface: #1a1a1a;                 /* Dark surface */
+  --text: #ffffff;                    /* White text */
+  --accent: #ffffff;                  /* White accent */
+  --accent-2: #cccccc;                /* Light gray secondary */
+  --border: #666666;                  /* Gray border */
+  --overlay: rgba(255, 255, 255, 0.1); /* White overlay */
+
+  /* High contrast colors */
+  --success: #ffffff;
+  --warning: #ffffff;
+  --error: #ffffff;
+  --info: #ffffff;
+}
+
+/* ▼ COMPONENT OVERRIDES FOR COLORBLIND THEME ▼ */
+[data-theme="colorblind"] .btn-primary {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+[data-theme="colorblind"] .btn-primary:hover {
+  background: #cccccc !important;
+  color: #000000 !important;
+}
+
+[data-theme="colorblind"] .btn-outline {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+[data-theme="colorblind"] .btn-outline:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+[data-theme="colorblind"] .btn-ghost {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="colorblind"] .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+/* ▼ THEME TOGGLE STYLING ▼ */
+.theme-toggle {
+  position: relative;
+  transition: all var(--duration) var(--easing);
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--accent), var(--accent-2));
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.theme-toggle:hover::before {
+  opacity: 0.3;
+}
+
+/* Enhanced theme toggle for dark mode */
+[data-theme="dark"] .theme-toggle {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: var(--background-tertiary);
+  border-color: var(--accent);
+}
+
+/* Enhanced theme toggle for colorblind mode */
+[data-theme="colorblind"] .theme-toggle {
+  border: 2px solid #ffffff !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="colorblind"] .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #cccccc !important;
+}
+
+/* ▼ TYPOGRAPHY STYLES ▼ */
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ▼ ACCESSIBILITY & MOTION ▼ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ▼ UTILITY CLASSES ▼ */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+/* ▼ GLOW EFFECTS ▼ */
+.glow-accent {
+  box-shadow: 0 0 20px var(--accent-light);
+}
+
+[data-theme="dark"] .glow-accent {
+  box-shadow: 0 0 20px var(--accent-light);
+}
+
+[data-theme="colorblind"] .glow-accent {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* ▼ GLOBAL RESET & SCROLLBAR ▼ */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Theme-specific scrollbar styling */
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="colorblind"] {
+  color-scheme: dark;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
