@@ -246,11 +246,11 @@ const HeroSection: React.FC = () => {
                 />
               </div>
 
-              {/* Professional Status - Below Photo with 3-line gap */}
+              {/* Professional Status - Below Photo */}
               <motion.div 
                 className="space-y-6"
                 style={{
-                  marginTop: '4.5rem', // 3 lines of space below photo
+                  marginTop: '1rem', // Reduced space below photo
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
