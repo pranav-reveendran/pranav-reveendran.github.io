@@ -48,9 +48,19 @@ export default function Typewriter({
   }, [currentText, isTyping, currentLineIndex, lines, typingSpeed, delayBetweenLines]);
   
   return (
-    <div className={`font-mono text-sm md:text-base ${className}`}>
-              {prefix && <span className="text-gray-600 dark:text-gray-300">{prefix}</span>} {currentText}
-      <span className="animate-pulse">_</span>
+    <div className={`font-mono text-sm md:text-base relative ${className}`} style={{ minHeight: '1.5em' }}>
+      <span>
+        {prefix && <span className="text-gray-600 dark:text-gray-300">{prefix}</span>} {currentText}
+      </span>
+      <span 
+        className="absolute animate-pulse" 
+        style={{ 
+          left: `${currentText.length + (prefix ? prefix.length + 1 : 0)}ch`,
+          transform: 'translateX(0)'
+        }}
+      >
+        _
+      </span>
     </div>
   );
 }

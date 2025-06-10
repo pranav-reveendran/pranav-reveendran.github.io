@@ -78,11 +78,12 @@ const AboutSection = () => {
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Main ABOUT ME heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
+          style={{ minHeight: '120px' }}
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight text-[#1a1a1a]" id="about-heading">
             <span className="text-[#0066cc] relative">
@@ -98,10 +99,11 @@ const AboutSection = () => {
             {/* Professional Summary */}
             <motion.div 
               className="space-y-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              style={{ minHeight: '180px' }}
             >
               <div className="space-y-6">
                 <div className="space-y-4">
@@ -119,10 +121,11 @@ const AboutSection = () => {
             {/* Enhanced AMA Search with accessibility patterns */}
             <motion.div 
               className="relative"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
+              style={{ minHeight: '200px' }}
             >
               <div className="bg-white border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-[#0066cc]/30 transition-all duration-300 relative">
                 {/* Pattern differentiation for colorblind users */}
@@ -157,10 +160,11 @@ const AboutSection = () => {
             {/* Enhanced CTA Buttons with new palette */}
             <motion.div 
               className="flex flex-col sm:flex-row items-start gap-4"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              style={{ minHeight: '60px' }}
             >
               <Button 
                 className="group bg-[#0066cc] hover:bg-[#004499] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium border-2 border-[#0066cc] hover:border-[#004499]"
@@ -188,10 +192,11 @@ const AboutSection = () => {
           {/* Right column - Enhanced Data Pipeline Card */}
           <motion.div 
             className="lg:col-span-5"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.5 }}
+            style={{ minHeight: '400px' }}
           >
             <DataPipelineCard className="sticky top-8" />
           </motion.div>
@@ -199,11 +204,12 @@ const AboutSection = () => {
 
         {/* Full Width Core Technologies Section */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-16"
+          style={{ minHeight: '300px' }}
         >
           <div className="bg-white border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-[#0066cc]/30 transition-all duration-300 relative">
             {/* Pattern differentiation */}

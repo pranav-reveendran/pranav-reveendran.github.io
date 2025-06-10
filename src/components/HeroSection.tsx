@@ -186,9 +186,10 @@ const HeroSection: React.FC = () => {
             {/* LEFT 50% - Full Text Content (Heading + Description + Stats) */}
             <motion.div 
               className="py-12 space-y-8"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
+              style={{ minHeight: '600px' }}
             >
               {/* Hero Text Content */}
               <div className="space-y-6">
@@ -199,9 +200,10 @@ const HeroSection: React.FC = () => {
               {/* Achievement Metrics */}
               <motion.div 
                 className="grid grid-cols-2 gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
+                style={{ minHeight: '180px' }}
               >
                 <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
                   <div className="text-2xl font-bold text-[#0066cc] mb-1">4+</div>
@@ -227,9 +229,10 @@ const HeroSection: React.FC = () => {
             {/* RIGHT 50% - Photo + Status Info */}
             <motion.div 
               className="py-12 space-y-8"
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
+              style={{ minHeight: '600px' }}
             >
               {/* Photo Container */}
               <div 
