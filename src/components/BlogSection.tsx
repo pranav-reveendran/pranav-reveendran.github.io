@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Badge } from '@/components/ui/badge';
-import { CalendarDays, Clock, ChevronRight, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
+import { CalendarDays, Clock, ChevronRight, ChevronLeft, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useMediumPosts, type MediumPost } from '@/hooks/useMediumPosts';
 
@@ -199,13 +199,21 @@ const BlogSection = () => {
           <Pagination>
             <PaginationContent>
               <PaginationItem>
-                              <PaginationPrevious 
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                className={cn(
-                  "text-accent hover:text-accent/80",
-                  currentPage === 1 && "opacity-50 cursor-not-allowed"
-                )}
-              />
+                              {currentPage === 1 ? (
+                <span 
+                  className="inline-flex items-center justify-center gap-1 pl-2.5 h-10 px-4 py-2 text-sm font-medium rounded-md text-accent opacity-50 cursor-not-allowed"
+                  aria-disabled="true"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                  <span>Previous</span>
+                </span>
+              ) : (
+                <PaginationPrevious 
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  className="text-accent hover:text-accent/80"
+                  href="#"
+                />
+              )}
             </PaginationItem>
             <PaginationItem>
               <PaginationLink 
@@ -214,18 +222,28 @@ const BlogSection = () => {
                   "text-accent",
                   currentPage === 1 && "border-accent"
                 )}
+                href="#"
+                onClick={() => setCurrentPage(1)}
               >
                 1
               </PaginationLink>
             </PaginationItem>
             <PaginationItem>
-              <PaginationNext 
-                onClick={() => setCurrentPage(prev => prev + 1)}
-                className={cn(
-                  "text-accent hover:text-accent/80",
-                  currentPage * postsPerPage >= filteredPosts.length && "opacity-50 cursor-not-allowed"
-                )}
-              />
+              {currentPage * postsPerPage >= filteredPosts.length ? (
+                <span 
+                  className="inline-flex items-center justify-center gap-1 pr-2.5 h-10 px-4 py-2 text-sm font-medium rounded-md text-accent opacity-50 cursor-not-allowed"
+                  aria-disabled="true"
+                >
+                  <span>Next</span>
+                  <ChevronRight className="h-4 w-4" />
+                </span>
+              ) : (
+                <PaginationNext 
+                  onClick={() => setCurrentPage(prev => prev + 1)}
+                  className="text-accent hover:text-accent/80"
+                  href="#"
+                />
+              )}
               </PaginationItem>
             </PaginationContent>
           </Pagination>
