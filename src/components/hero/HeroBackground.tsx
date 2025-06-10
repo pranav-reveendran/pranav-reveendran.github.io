@@ -4,6 +4,35 @@ import { useTheme } from '@/context/ThemeContext';
 import { useMotionSafe } from '@/hooks/use-motion-safe';
 
 export default function HeroBackground() {
+  // Simplified static background to prevent 19ms forced reflows
+  return (
+    <div className="absolute inset-0 opacity-30">
+      {/* Static grid pattern */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(224, 122, 95, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(224, 122, 95, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px'
+        }}
+      />
+      {/* Static accent dots */}
+      <div className="absolute inset-0">
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-accent/20 rounded-full"
+            style={{
+              left: `${15 + (i * 7) % 80}%`,
+              top: `${20 + (i * 11) % 60}%`,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
   const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const shouldAnimate = useMotionSafe();

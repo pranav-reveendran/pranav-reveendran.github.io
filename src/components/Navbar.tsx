@@ -10,39 +10,56 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollProgress, setScrollProgress] = useState(0);
 
+  // Cache section positions to prevent forced reflows
+  const [sectionPositions, setSectionPositions] = useState<{[key: string]: {top: number, bottom: number}}>({});
+  
   // Handle scroll effect and section tracking
   useEffect(() => {
+    // Cache section positions once
+    const updateSectionPositions = () => {
+      const sections = document.querySelectorAll<HTMLElement>('section[id]');
+      const positions: {[key: string]: {top: number, bottom: number}} = {};
+      
+      sections.forEach(section => {
+        const sectionId = section.getAttribute('id') || '';
+        const rect = section.getBoundingClientRect();
+        const top = rect.top + window.scrollY - 120;
+        const bottom = top + rect.height;
+        positions[sectionId] = { top, bottom };
+      });
+      
+      setSectionPositions(positions);
+    };
+    
+    // Initial calculation
+    updateSectionPositions();
+    
+    // Recalculate on resize only
+    window.addEventListener('resize', updateSectionPositions);
+    
     const handleScroll = () => {
       const scrollY = window.scrollY;
       
       // Set header style based on scroll position
-      if (scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(scrollY > 10);
       
-      // Calculate scroll progress for the progress bar
-      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollY / windowHeight) * 100;
-      setScrollProgress(progress);
+      // Calculate scroll progress for the progress bar (cached document height)
+      const documentHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const progress = (scrollY / (documentHeight - windowHeight)) * 100;
+      setScrollProgress(Math.min(100, Math.max(0, progress)));
       
-      // Determine active section
-      const sections = document.querySelectorAll<HTMLElement>('section[id]');
-      let currentActiveSection = 'home'; // Default to home
+      // Determine active section using cached positions
+      let currentActiveSection = 'home';
       
-      // If we're near the top, always show home as active
       if (scrollY < 100) {
         setActiveSection('home');
         return;
       }
       
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        const sectionId = section.getAttribute('id') || '';
-        
-        if (scrollY >= sectionTop && scrollY < sectionBottom) {
+      // Use cached positions instead of reading DOM
+      Object.entries(sectionPositions).forEach(([sectionId, position]) => {
+        if (scrollY >= position.top && scrollY < position.bottom) {
           currentActiveSection = sectionId;
         }
       });
@@ -54,8 +71,11 @@ const Navbar = () => {
     handleScroll();
     
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateSectionPositions);
+    };
+  }, [sectionPositions]);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);

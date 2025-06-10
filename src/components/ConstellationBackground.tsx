@@ -24,6 +24,8 @@ interface Connection {
 }
 
 const ConstellationBackground: React.FC = () => {
+  // Disabled for performance - was causing 70ms forced reflows
+  return null;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
   const mouseRef = useRef<{ x: number; y: number; isMoving: boolean; movingTimeout?: NodeJS.Timeout }>({ x: 0, y: 0, isMoving: false });
@@ -330,10 +332,16 @@ const ConstellationBackground: React.FC = () => {
     if (!canvas) return;
 
     const resizeCanvas = () => {
+      // Cache rect to prevent forced reflow
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-      initializeParticles(canvas.width, canvas.height);
+      const { width, height } = rect;
+      
+      // Only update if dimensions changed
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+        initializeParticles(width, height);
+      }
     };
 
     resizeCanvas();

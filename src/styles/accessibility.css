@@ -352,4 +352,60 @@ img[loading="lazy"] {
 @keyframes loading {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+/* Framer Motion Performance Optimizations */
+[data-framer-motion] {
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Prevent forced reflows on animated elements */
+.motion-safe {
+  contain: layout style paint;
+}
+
+/* Optimize specific animation types */
+.motion-transform {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.motion-opacity {
+  will-change: opacity;
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* CSS-based Scroll Animations - Replace GSAP for Performance */
+[data-animate-on-scroll] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-animate-on-scroll].animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation delays */
+[data-animate-on-scroll][data-delay="1"] { transition-delay: 0.1s; }
+[data-animate-on-scroll][data-delay="2"] { transition-delay: 0.2s; }
+[data-animate-on-scroll][data-delay="3"] { transition-delay: 0.3s; }
+[data-animate-on-scroll][data-delay="4"] { transition-delay: 0.4s; }
+[data-animate-on-scroll][data-delay="5"] { transition-delay: 0.5s; }
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate-on-scroll] {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
 } 
