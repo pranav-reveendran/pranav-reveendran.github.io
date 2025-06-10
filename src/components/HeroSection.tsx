@@ -238,8 +238,8 @@ const HeroSection: React.FC = () => {
               <div 
                 className="w-full"
                 style={{
-                  marginTop: '4.5rem', // 3 lines of text spacing
-                  height: 'calc(60vh - 4.5rem)', // Fixed height for photo
+                  marginTop: '2rem', // Move photo 1 line up (reduced from 4.5rem)
+                  height: 'calc(60vh - 2rem)', // Adjusted height for photo
                 }}
               >
                 <ReactablePhoto 
@@ -253,7 +253,7 @@ const HeroSection: React.FC = () => {
               <motion.div 
                 className="space-y-6"
                 style={{
-                  marginTop: '1rem', // Reduced space below photo
+                  marginTop: '4rem', // Move status cards 2 lines down (increased from 1rem)
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
