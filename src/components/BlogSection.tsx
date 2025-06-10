@@ -84,7 +84,7 @@ const BlogSection = () => {
     <section id="blogs" className="py-20 px-6 md:px-12 bg-surface">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Blog</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-text mb-4" id="blog-heading">Blog</h2>
           <p className="text-text text-opacity-80 mb-8">Insights and thoughts on data engineering, AI, and technology</p>
           <div className="h-1 w-20 bg-accent mx-auto rounded-full"></div>
         </div>

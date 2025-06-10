@@ -183,7 +183,7 @@ const SkillsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: materialColors.onSurface }}>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" id="skills-heading" style={{ color: materialColors.onSurface }}>
             ✨ TECHNICAL EXPERTISE ✨
           </h2>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: materialColors.onSurfaceLight }}>

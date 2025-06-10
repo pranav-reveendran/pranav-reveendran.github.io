@@ -438,7 +438,7 @@ const ProjectsSection = () => {
             <span>Featured Work</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900" id="projects-heading">
             Project <span className="text-[#da7756]">Showcase</span>
           </h2>
           
@@ -488,7 +488,7 @@ const ProjectsSection = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="bg-gray-100 border border-gray-200 rounded-lg px-4 py-2 pl-10 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#da7756]/50 focus:border-[#da7756] transition-all duration-300 w-64"
                 />
-                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-600 dark:text-gray-300" />
               </div>
             </div>
           </Tabs>

@@ -97,6 +97,8 @@ export const ExperienceCard = ({ experience, index, side }: ExperienceCardProps)
             <button
               onClick={() => setShowDetails(!showDetails)}
               className="text-accent text-sm hover:underline underline-offset-4 focus:outline-none flex items-center gap-1"
+              aria-expanded={showDetails}
+              aria-label={`${showDetails ? 'Hide' : 'Show'} details for ${experience.title} at ${experience.company}`}
             >
               {detailsText}
               <ChevronDown 

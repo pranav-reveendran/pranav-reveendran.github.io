@@ -84,12 +84,12 @@ const AboutSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight text-[#1a1a1a]">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight text-[#1a1a1a]" id="about-heading">
             <span className="text-[#0066cc] relative">
               ABOUT ME
               <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#0066cc] to-[#004499] rounded-full opacity-60" />
             </span>
-          </h1>
+          </h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-16 items-start">

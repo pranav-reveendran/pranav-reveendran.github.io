@@ -51,6 +51,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ onNameTyped }) => {
     >
       <motion.h1 
         className="text-6xl md:text-7xl font-serif leading-tight mb-6"
+        id="hero-heading"
         initial={shouldAnimate ? { opacity: 0, y: 20 } : undefined}
         animate={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.6, delay: 0.2 }}

@@ -49,7 +49,7 @@ export default function Typewriter({
   
   return (
     <div className={`font-mono text-sm md:text-base ${className}`}>
-      {prefix && <span className="text-gray-400">{prefix}</span>} {currentText}
+              {prefix && <span className="text-gray-600 dark:text-gray-300">{prefix}</span>} {currentText}
       <span className="animate-pulse">_</span>
     </div>
   );

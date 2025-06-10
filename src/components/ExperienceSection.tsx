@@ -618,12 +618,12 @@ const ExperienceSection = () => {
         >
           {/* Title Section */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-4" id="experience-heading">
               <span className="text-[#0066cc] relative">
                 EXPERIENCE
                 <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#0066cc] to-[#004499] rounded-full opacity-60" />
               </span>
-            </h1>
+            </h2>
             
             {/* Professional Experience Badge */}
             <div className="inline-flex items-center gap-3 mb-4 px-6 py-3 rounded-full border-2 border-[#0066cc]/30 bg-[#0066cc]/10 backdrop-blur-sm">
