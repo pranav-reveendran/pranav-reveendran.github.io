@@ -1,0 +1,160 @@
+/* ===== CLAUDE-INSPIRED THEME ===== */
+/* Based on Anthropic's brand palette with 60-30-10 proportions */
+
+:root[data-theme="claude"] {
+  /* ===== CANVAS & SURFACES (60% - Pampas dominance) ===== */
+  --color-bg: #F4F3EE;             /* Pampas - primary canvas */
+  --color-surface: #FFFFFF;        /* Pure white for cards */
+  --color-surface-secondary: #B1ADA1; /* Cloudy - nav bars, secondary surfaces */
+  --color-surface-tertiary: #EDEAE3;  /* Tinted Pampas for subtle elevation */
+  --color-surface-inverse: #1B1B1B;   /* Night-Charcoal for dark surfaces */
+  --color-surface-overlay: rgba(244, 243, 238, 0.95); /* Pampas overlay */
+
+  /* ===== TEXT HIERARCHY (30% - Night-Charcoal + Cloudy) ===== */
+  --color-text-primary: #1B1B1B;   /* Night-Charcoal - main headings/body */
+  --color-text-secondary: #474440; /* Darkened for AAA contrast on Cloudy */
+  --color-text-tertiary: #6B6761;  /* Muted text on Pampas backgrounds */
+  --color-text-inverse: #F4F3EE;   /* Pampas on dark backgrounds */
+  --color-text-muted: #8B8680;     /* Subtle text, captions */
+
+  /* ===== BRAND ACCENT (10% - Crail family) ===== */
+  --color-primary: #C15F3C;        /* Crail - primary accent for links/icons */
+  --color-primary-light: #D4795A;  /* Lighter Crail for hover states */
+  --color-primary-dark: #913F28;   /* Darker Crail for active states */
+  --color-primary-50: rgba(193, 95, 60, 0.05);
+  --color-primary-100: rgba(193, 95, 60, 0.1);
+  --color-primary-200: rgba(193, 95, 60, 0.2);
+  --color-primary-300: rgba(193, 95, 60, 0.3);
+  --color-primary-500: #C15F3C;
+  --color-primary-900: rgba(193, 95, 60, 0.9);
+
+  /* ===== HIGH-CONVERSION CTA (Strategic Orange) ===== */
+  --color-cta: #FF6B35;            /* Warm CTA - harmonizes with Crail */
+  --color-cta-light: #FF8659;      /* Lighter for disabled states */
+  --color-cta-dark: #E55A2B;       /* Current hover color */
+  --color-cta-hover: #FC6203;      /* Deep Coral - Anthropic's hover accent */
+  --color-cta-50: rgba(255, 107, 53, 0.05);
+  --color-cta-100: rgba(255, 107, 53, 0.1);
+  --color-cta-200: rgba(255, 107, 53, 0.2);
+
+  /* ===== BORDER SYSTEM ===== */
+  --color-border: #D1CFC8;         /* Toned-down Cloudy for subtle borders */
+  --color-border-light: #E8E6E0;   /* Very light for card separators */
+  --color-border-dark: #B1ADA1;    /* Cloudy for prominent borders */
+  --color-border-focus: var(--color-primary); /* Crail for focus indicators */
+
+  /* ===== STATUS COLORS (Harmonized with Claude palette) ===== */
+  --color-success: #2D7D5C;        /* Forest green - complements warm palette */
+  --color-success-light: #4A9B73;
+  --color-success-dark: #1A5A3A;
+  --color-warning: #D4795A;        /* Warm amber - uses primary-light */
+  --color-warning-light: #E09478;
+  --color-warning-dark: #B85D3E;
+  --color-error: #B85D3E;          /* Warm red - stays in Crail family */
+  --color-error-light: #D4795A;
+  --color-error-dark: #913F28;
+
+  /* ===== SEMANTIC GRAYS (Cloudy-based neutral scale) ===== */
+  --color-gray-50: #F9F8F6;        /* Lightest - almost Pampas */
+  --color-gray-100: #F1F0EC;       /* Light backgrounds */
+  --color-gray-200: #E8E6E0;       /* Subtle borders */
+  --color-gray-300: #D1CFC8;       /* Medium borders */
+  --color-gray-400: #B1ADA1;       /* Cloudy - secondary surfaces */
+  --color-gray-500: #8B8680;       /* Medium text */
+  --color-gray-600: #6B6761;       /* Secondary text */
+  --color-gray-700: #474440;       /* Primary text (AAA contrast) */
+  --color-gray-800: #2D2B28;       /* Dark text */
+  --color-gray-900: #1B1B1B;       /* Night-Charcoal - darkest text */
+
+  /* ===== ENHANCED SHADOWS (Warm-tinted) ===== */
+  --shadow-sm: 0 1px 2px 0 rgba(27, 27, 27, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(27, 27, 27, 0.08), 0 2px 4px -1px rgba(27, 27, 27, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(27, 27, 27, 0.08), 0 4px 6px -2px rgba(27, 27, 27, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(27, 27, 27, 0.08), 0 10px 10px -5px rgba(27, 27, 27, 0.03);
+  --shadow-primary: 0 10px 15px -3px rgba(193, 95, 60, 0.12), 0 4px 6px -2px rgba(193, 95, 60, 0.08);
+  --shadow-cta: 0 10px 15px -3px rgba(255, 107, 53, 0.2), 0 4px 6px -2px rgba(255, 107, 53, 0.12);
+
+  /* ===== INTERACTION STATES ===== */
+  --focus-ring: 2px solid var(--color-primary);
+  --focus-ring-offset: 2px;
+  --focus-ring-cta: 2px solid var(--color-cta);
+  --link-underline: 1px solid currentColor;
+  --hover-elevation: translateY(-1px);
+  --active-scale: scale(0.98);
+
+  /* ===== SPACING & LAYOUT (unchanged) ===== */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ===== BORDER RADIUS ===== */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ===== TYPOGRAPHY ===== */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ===== Z-INDEX SCALE ===== */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+/* ===== HIGH CONTRAST VARIANT ===== */
+:root[data-theme="claude"][data-contrast="high"] {
+  --color-primary: #913F28;        /* Darker Crail for better contrast */
+  --color-primary-dark: #6B2E1E;   /* Even darker for active states */
+  --color-cta: #B24F23;            /* Darker CTA for high contrast */
+  --color-cta-hover: #913F28;      /* Matches dark primary */
+  --color-text-primary: #000000;   /* Pure black for maximum contrast */
+  --color-text-secondary: #2D2B28; /* Darker secondary text */
+  --color-border: #474440;         /* Darker borders */
+  --color-border-focus: #000000;   /* Black focus indicators */
+}
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="claude"] {
+    --transition-fast: 0ms;
+    --transition-normal: 0ms;
+    --transition-slow: 0ms;
+    --hover-elevation: none;
+    --active-scale: none;
+  }
+}
+
+/* ===== DARK MODE PREPARATION (Future) ===== */
+:root[data-theme="claude-dark"] {
+  --color-bg: #1B1B1B;             /* Night-Charcoal background */
+  --color-surface: #2D2B28;        /* Dark surface */
+  --color-surface-secondary: #474440; /* Darker secondary */
+  --color-text-primary: #F4F3EE;   /* Pampas text */
+  --color-text-secondary: #B1ADA1; /* Cloudy text */
+  /* Accent colors remain the same for brand consistency */
+} 

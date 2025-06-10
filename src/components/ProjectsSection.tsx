@@ -191,19 +191,19 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
   return (
     <Card 
       ref={cardRef}
-      className="project-card group relative overflow-hidden bg-white border border-gray-200 hover:border-[#da7756]/50 transition-all duration-500 hover:shadow-xl hover:shadow-[#da7756]/10 hover:-translate-y-1 h-full flex flex-col"
+      className="project-card group relative overflow-hidden bg-white border border-gray-200 hover:border-[var(--color-primary)]/50 transition-all duration-500 hover:shadow-xl hover:shadow-[var(--color-primary)]/10 hover:-translate-y-1 h-full flex flex-col"
     >
       {/* Gradient overlay for visual interest */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#da7756]/5 via-transparent to-[#da7756]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/5 via-transparent to-[var(--color-primary)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       <CardHeader className="relative z-10 pb-4">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-lg bg-[#da7756]/10 text-[#da7756] group-hover:bg-[#da7756]/20 transition-colors duration-300">
+            <div className="p-2 rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)] group-hover:bg-[var(--color-primary)]/20 transition-colors duration-300">
               {getProjectIcon(project)}
             </div>
             <div className="flex-1">
-              <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-[#da7756] transition-colors duration-300">
+              <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors duration-300">
                 {project.title}
               </CardTitle>
               <div className="flex items-center space-x-2 mt-1">
@@ -215,7 +215,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               </div>
             </div>
           </div>
-          <Badge variant="secondary" className="bg-[#da7756]/10 text-[#da7756] border-[#da7756]/20 font-medium">
+          <Badge variant="secondary" className="bg-[var(--color-primary)]/10 text-[var(--color-primary)] border-[var(--color-primary)]/20 font-medium">
             {project.category}
           </Badge>
         </div>
@@ -231,7 +231,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           <h4 className="text-sm font-semibold text-gray-800">Tech Stack</h4>
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.slice(0, 2).flatMap(tech => tech.items.slice(0, 3)).map((tech, idx) => (
-              <Badge key={idx} variant="outline" className="text-xs bg-gray-50 border-[#da7756]/30 text-gray-600 hover:bg-[#da7756]/10 hover:text-[#da7756] transition-colors duration-200">
+              <Badge key={idx} variant="outline" className="text-xs bg-gray-50 border-[var(--color-primary)]/30 text-gray-600 hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] transition-colors duration-200">
                 {tech}
               </Badge>
             ))}
@@ -248,7 +248,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           <h4 className="text-sm font-semibold text-gray-800">Key Skills</h4>
           <div className="flex flex-wrap gap-1.5">
             {project.skills.slice(0, 3).map((skill, idx) => (
-              <Badge key={idx} variant="secondary" className="text-xs bg-[#da7756]/10 text-[#da7756] border border-[#da7756]/20">
+              <Badge key={idx} variant="secondary" className="text-xs bg-[var(--color-primary)]/10 text-[var(--color-primary)] border border-[var(--color-primary)]/20">
                 {skill}
               </Badge>
             ))}
@@ -267,7 +267,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             <ul className="space-y-2 text-sm text-gray-600">
               {project.keyFeatures.slice(0, 3).map((feature, idx) => (
                 <li key={idx} className="flex items-start space-x-2">
-                  <ArrowRight className="w-3 h-3 mt-0.5 text-[#da7756] flex-shrink-0" />
+                  <ArrowRight className="w-3 h-3 mt-0.5 text-[var(--color-primary)] flex-shrink-0" />
                   <span>{feature}</span>
                 </li>
               ))}
@@ -281,19 +281,31 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             variant="ghost"
             size="sm"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-[#da7756] hover:text-[#da7756]/80 hover:bg-[#da7756]/10 p-2"
+            className="text-[var(--color-primary)] hover:text-[var(--color-primary)]/80 hover:bg-[var(--color-primary)]/10 p-2"
           >
             {isExpanded ? 'Show Less' : 'Learn More'}
             <ArrowRight className={`w-3 h-3 ml-1 transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`} />
           </Button>
           
           <div className="flex space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-[var(--color-primary)]/30 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition-all duration-300"
+              onClick={() => {
+                // This will be connected to a case study modal or page
+                window.open(`#/project/${project.id}`, '_blank');
+              }}
+            >
+              <Eye className="w-3 h-3 mr-1" />
+              Case Study
+            </Button>
             {project.repoLink && (
               <Button
                 variant="outline"
                 size="sm"
                 asChild
-                className="border-[#da7756]/30 text-[#da7756] hover:bg-[#da7756] hover:text-white transition-all duration-300"
+                className="border-[var(--color-primary)]/30 text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300"
               >
                 <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
                   <Github className="w-3 h-3 mr-1" />
@@ -305,7 +317,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               <Button
                 size="sm"
                 asChild
-                className="bg-[#da7756] hover:bg-[#da7756]/90 text-white shadow-md hover:shadow-lg transition-all duration-300"
+                className="bg-[var(--color-cta)] hover:bg-[var(--color-cta-hover)] text-white shadow-md hover:shadow-lg transition-all duration-300"
               >
                 <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="w-3 h-3 mr-1" />

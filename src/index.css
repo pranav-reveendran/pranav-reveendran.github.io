@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap');
 
+@import './styles/variables.css';
+@import './styles/claude-theme.css';
+@import './styles/accessibility.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -656,4 +659,67 @@ pre, code, .code-block {
   50% {
     transform: scale(1.05);
   }
+}
+
+/* ===== CLAUDE THEME OVERRIDES FOR 60-30-10 BALANCE ===== */
+[data-theme="claude"] {
+  /* Override legacy colors with Claude palette */
+  --bg-main: var(--color-bg);              /* Pampas background (60%) */
+  --bg-section: var(--color-surface-tertiary); /* Tinted Pampas for sections */
+  --surface-primary: var(--color-surface);     /* White cards on Pampas (30%) */
+  --surface-elevated: var(--color-surface-secondary); /* Cloudy surfaces */
+  
+  --text-primary: var(--color-text-primary);   /* Night-Charcoal text */
+  --text-secondary: var(--color-text-secondary); /* Enhanced contrast */
+  --text-muted: var(--color-text-tertiary);    /* Muted text */
+  
+  --btn-primary: var(--color-cta);             /* CTA Orange buttons (10%) */
+  --btn-primary-hover: var(--color-cta-hover); /* Deep Coral hover */
+  --link-color: var(--color-primary);          /* Crail links */
+  --link-hover: var(--color-primary-dark);     /* Dark Crail hover */
+  
+  --gold-primary: var(--color-primary);        /* Crail accent */
+  --gold-bright: var(--color-primary-light);   /* Light Crail */
+  --gold-subtle: var(--color-primary-50);      /* Subtle Crail bg */
+}
+
+/* Enhanced section styling for 60-30-10 balance */
+[data-theme="claude"] .section {
+  background-color: var(--color-bg); /* Pampas dominance */
+}
+
+[data-theme="claude"] .section:nth-child(even) {
+  background-color: var(--color-surface-tertiary); /* Subtle variety */
+}
+
+/* Ensure proper card contrast on Pampas */
+[data-theme="claude"] .card,
+[data-theme="claude"] .surface,
+[data-theme="claude"] .project-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Restrict accent colors to interactive elements only */
+[data-theme="claude"] .btn-primary,
+[data-theme="claude"] .kintsugi-btn {
+  background-color: var(--color-cta);
+  color: var(--color-text-inverse);
+}
+
+[data-theme="claude"] .btn-primary:hover,
+[data-theme="claude"] .kintsugi-btn:hover {
+  background-color: var(--color-cta-hover);
+}
+
+/* Links use Crail, not CTA orange */
+[data-theme="claude"] a,
+[data-theme="claude"] .link-primary {
+  color: var(--color-primary);
+}
+
+[data-theme="claude"] a:hover,
+[data-theme="claude"] .link-primary:hover {
+  color: var(--color-primary-dark);
 }

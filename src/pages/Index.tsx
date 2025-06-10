@@ -55,41 +55,43 @@ const Index = () => {
         {/* Main content */}
         <div className="relative z-[5]">
           <Navbar />
-          <section className="section">
-            <HeroSection />
-          </section>
+          <main id="main-content" role="main">
+            <section className="section" aria-labelledby="hero-heading">
+              <HeroSection />
+            </section>
           
-          {/* Apply content-visibility to below-fold sections */}
-          <section className="content-visibility-auto section">
-            <AboutSection />
-          </section>
+            {/* Apply content-visibility to below-fold sections */}
+            <section className="content-visibility-auto section" aria-labelledby="about-heading">
+              <AboutSection />
+            </section>
+            
+            <section className="content-visibility-auto section" aria-labelledby="experience-heading">
+              <ExperienceSection />
+            </section>
+            
+            <section className="content-visibility-auto section" aria-labelledby="education-heading">
+              <EducationSection />
+            </section>
+            
+            <section className="content-visibility-auto section" aria-labelledby="projects-heading">
+              <ProjectsSection />
+            </section>
+            
+            <section className="content-visibility-auto section" aria-labelledby="skills-heading">
+              <SkillsSection />
+            </section>
+            
+            <section className="content-visibility-auto section" aria-labelledby="blog-heading">
+              <BlogSection />
+            </section>
+            
+            <section className="content-visibility-auto section" aria-labelledby="contact-heading">
+              <ContactSection />
+            </section>
           
-          <section className="content-visibility-auto section">
-            <ExperienceSection />
-          </section>
-          
-          <section className="content-visibility-auto section">
-            <EducationSection />
-          </section>
-          
-          <section className="content-visibility-auto section">
-            <ProjectsSection />
-          </section>
-          
-          <section className="content-visibility-auto section">
-            <SkillsSection />
-          </section>
-          
-          <section className="content-visibility-auto section">
-            <BlogSection />
-          </section>
-          
-          <section className="content-visibility-auto section">
-            <ContactSection />
-          </section>
-          
-          <Footer />
-          <VisitorCounter />
+            <Footer />
+            <VisitorCounter />
+          </main>
         </div>
         
         {shouldAnimate && <ScrollAnimations />}
