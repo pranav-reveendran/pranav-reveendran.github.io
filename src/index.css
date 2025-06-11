@@ -5,6 +5,57 @@
 @import './styles/variables.css';
 @import './styles/claude-theme.css';
 @import './styles/accessibility.css';
+
+/* ===== LAYOUT STABILITY & CLS PREVENTION ===== */
+
+/* Force hardware acceleration for absolute positioned elements */
+.absolute[class*="inset-0"] {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: strict;
+}
+
+/* Prevent layout shifts during background loading */
+.fixed[class*="inset-0"] {
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+/* Stable dimensions for dynamic content */
+.layout-stable {
+  contain: layout style paint;
+  min-height: var(--min-height, auto);
+  min-width: var(--min-width, auto);
+}
+
+/* GPU acceleration for animated elements */
+[class*="animate-"], 
+[class*="motion-"],
+.framer-motion {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reset will-change after animations complete */
+.animation-complete {
+  will-change: auto;
+}
+
+/* Prevent reflows on background elements */
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  contain: strict;
+  pointer-events: none;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

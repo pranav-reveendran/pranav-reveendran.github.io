@@ -371,6 +371,12 @@ const ConstellationBackground: React.FC = () => {
       style={{ 
         background: 'transparent',
         mixBlendMode: 'normal',
+        width: '100vw',
+        height: '100vh',
+        minWidth: '100vw',
+        minHeight: '100vh',
+        contain: 'strict',
+        willChange: 'auto'
       }}
     >
       <canvas
@@ -378,6 +384,10 @@ const ConstellationBackground: React.FC = () => {
         className="absolute inset-0 w-full h-full"
         style={{
           opacity: 0.7, // Subtle but visible
+          width: '100%',
+          height: '100%',
+          minWidth: '100vw',
+          minHeight: '100vh'
         }}
       />
     </div>

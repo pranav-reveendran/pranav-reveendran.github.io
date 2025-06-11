@@ -16,6 +16,7 @@ import ConstellationBackground from '@/components/ConstellationBackground';
 import { useMotionSafe } from '@/hooks/use-motion-safe';
 import { TechHighlightProvider } from '@/context/TechHighlightContext';
 import { ThemeProvider } from '@/context/ThemeContext';
+import { StableBackgroundContainer, LayoutStabilizer } from '@/components/LayoutStability';
 
 const Index = () => {
   const shouldAnimate = useMotionSafe();
@@ -48,7 +49,7 @@ const Index = () => {
 
   return (
     <ThemeProvider>
-      <TechHighlightProvider>
+    <TechHighlightProvider>
         <div className="App">
           {/* Skip Link for Accessibility */}
           <a 
@@ -58,70 +59,66 @@ const Index = () => {
             Skip to main content
           </a>
           
-          <div 
-            className="min-h-screen relative overflow-hidden bg-white text-gray-900"
-          >
-            {/* Fixed background layer with standard opacity */}
-            <div className="fixed inset-0 w-full h-full z-0 overflow-hidden">
-              {/* Standard background color with opacity */}
-              <div 
-                className="absolute inset-0 bg-white opacity-95" 
-              />
-              {/* Three.js background with standard opacity */}
-              <div className="absolute inset-0" style={{ opacity: 0.03 }}>
-                <ThreeBackground />
-              </div>
+      <LayoutStabilizer minHeight="100vh">
+        <div className="min-h-screen relative overflow-hidden bg-white text-gray-900">
+          {/* Stable Fixed background layer */}
+          <StableBackgroundContainer>
+            {/* Three.js background with standard opacity */}
+            <div className="absolute inset-0" style={{ opacity: 0.03 }}>
+              <ThreeBackground />
             </div>
-            
-            {/* Constellation particle network */}
-            {shouldAnimate && <ConstellationBackground />}
-            
-            {/* Main content */}
-            <div className="relative z-[5]">
-              <Navbar />
+          </StableBackgroundContainer>
+          
+          {/* Constellation particle network */}
+          {shouldAnimate && <ConstellationBackground />}
+        
+        {/* Main content */}
+        <div className="relative z-[5]">
+          <Navbar />
               <main id="main-content" role="main">
                 <section className="section" aria-labelledby="hero-heading">
-                  <HeroSection />
-                </section>
-              
-                {/* Apply content-visibility to below-fold sections */}
+            <HeroSection />
+          </section>
+          
+          {/* Apply content-visibility to below-fold sections */}
                 <section className="content-visibility-auto section" aria-labelledby="about-heading">
-                  <AboutSection />
-                </section>
-                
+            <AboutSection />
+          </section>
+          
                 <section className="content-visibility-auto section" aria-labelledby="experience-heading">
-                  <ExperienceSection />
-                </section>
-                
+            <ExperienceSection />
+          </section>
+          
                 <section className="content-visibility-auto section" aria-labelledby="education-heading">
-                  <EducationSection />
-                </section>
-                
+            <EducationSection />
+          </section>
+          
                 <section className="content-visibility-auto section" aria-labelledby="projects-heading">
-                  <ProjectsSection />
-                </section>
-                
+            <ProjectsSection />
+          </section>
+          
                 <section className="content-visibility-auto section" aria-labelledby="skills-heading">
-                  <SkillsSection />
-                </section>
-                
+            <SkillsSection />
+          </section>
+          
                 <section className="content-visibility-auto section" aria-labelledby="blog-heading">
-                  <BlogSection />
-                </section>
-                
+            <BlogSection />
+          </section>
+          
                 <section className="content-visibility-auto section" aria-labelledby="contact-heading">
-                  <ContactSection />
-                </section>
-              
-                <Footer />
-                <VisitorCounter />
+            <ContactSection />
+          </section>
+          
+          <Footer />
+          <VisitorCounter />
               </main>
-            </div>
-            
-            {shouldAnimate && <ScrollAnimations />}
-          </div>
         </div>
-      </TechHighlightProvider>
+        
+        {shouldAnimate && <ScrollAnimations />}
+          </div>
+        </LayoutStabilizer>
+      </div>
+    </TechHighlightProvider>
     </ThemeProvider>
   );
 };

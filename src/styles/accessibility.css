@@ -339,6 +339,8 @@ th {
 img {
   max-width: 100%;
   height: auto;
+  /* Prevent layout shifts during loading */
+  aspect-ratio: attr(width) / attr(height);
 }
 
 /* Reserve space for images during loading */
@@ -347,6 +349,26 @@ img[loading="lazy"] {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
+}
+
+/* Specific dimensions for known image types */
+img[src*="logo"] {
+  width: auto;
+  height: 40px;
+  aspect-ratio: auto;
+}
+
+img[src*="blog-"] {
+  aspect-ratio: 16/9;
+  width: 100%;
+  height: auto;
+}
+
+/* Profile/avatar images */
+img[src*="profile"], img[src*="avatar"] {
+  aspect-ratio: 1/1;
+  width: 100%;
+  height: auto;
 }
 
 @keyframes loading {
