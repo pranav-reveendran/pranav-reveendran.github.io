@@ -38,7 +38,7 @@ const HeroButtons: React.FC = () => {
         <span className="font-medium">🚀 View Projects</span>
         
         {/* Magnetic effect background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#c76646] to-[#da7756] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[inherit]" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#c76646] to-[color:var(--color-accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[inherit]" />
       </motion.a>
 
       {/* Secondary CTA - Download Resume */}

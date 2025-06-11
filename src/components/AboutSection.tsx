@@ -63,14 +63,14 @@ const AboutSection = () => {
       {/* Sophisticated background pattern */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #0066cc 1px, transparent 0)`,
+                      backgroundImage: `radial-gradient(circle at 2px 2px, var(--color-accent) 1px, transparent 0)`,
           backgroundSize: '32px 32px'
         }} />
       </div>
       
       {/* Floating accent elements with new blue palette */}
-      <div className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-[#0066cc]/5 to-[#004499]/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-24 h-24 bg-gradient-to-br from-[#e6f2ff]/20 to-[#0066cc]/5 rounded-full blur-2xl" />
+              <div className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-[color:var(--color-accent)]/5 to-[color:var(--color-accent-dark)]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-gradient-to-br from-[color:var(--color-accent-light)]/20 to-[color:var(--color-accent)]/5 rounded-full blur-2xl" />
       
       {/* Golden border bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#d4af37]" />
@@ -86,9 +86,9 @@ const AboutSection = () => {
           style={{ minHeight: '120px' }}
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight text-[#1a1a1a]" id="about-heading">
-            <span className="text-[#0066cc] relative">
+            <span className="text-[color:var(--color-accent-dark)] relative">
               ABOUT ME
-              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#0066cc] to-[#004499] rounded-full opacity-60" />
+              <div className="absolute -bottom-2 left-0 w-full h-1 bg-[color:var(--color-accent)] rounded-full opacity-60" />
             </span>
           </h2>
         </motion.div>
@@ -108,7 +108,7 @@ const AboutSection = () => {
               <div className="space-y-6">
                 <div className="space-y-4">
                   <p className="text-xl md:text-2xl text-[#4a4a4a] font-light leading-relaxed max-w-2xl">
-                    <span className="font-semibold text-[#0066cc]">Data Engineer Intern @ Amazon</span> with 4+ years of experience building enterprise-scale data infrastructure that processes 100TB+ daily and drives multi-million dollar business decisions.
+                    <span className="font-semibold text-[color:var(--color-accent-dark)]">Data Engineer Intern @ Amazon</span> with 4+ years of experience building enterprise-scale data infrastructure that processes 100TB+ daily and drives multi-million dollar business decisions.
                   </p>
                   
                   <p className="text-lg text-[#6a6a6a] leading-relaxed font-medium max-w-2xl">
@@ -127,20 +127,20 @@ const AboutSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               style={{ minHeight: '200px' }}
             >
-              <div className="bg-white border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-[#0066cc]/30 transition-all duration-300 relative">
+              <div className="bg-white border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-[color:var(--color-accent)]/30 transition-all duration-300 relative">
                 {/* Pattern differentiation for colorblind users */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0066cc] to-[#004499] rounded-t-2xl" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-[color:var(--color-accent)] rounded-t-2xl" />
                 
                 <div className="space-y-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#e6f2ff] flex items-center justify-center border border-[#0066cc]/20">
-                      <Search className="w-5 h-5 text-[#0066cc]" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-[#1a1a1a] flex items-center gap-2">
-                        Want to learn more about my experience?
-                        <span className="text-xs bg-[#0066cc] text-white px-2 py-1 rounded-full">ASK</span>
-                      </h3>
+                                      <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-[color:var(--color-accent-light)] flex items-center justify-center border border-[color:var(--color-accent)]/20">
+                        <Search className="w-5 h-5 text-[color:var(--color-accent)]" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-[#1a1a1a] flex items-center gap-2">
+                          Want to learn more about my experience?
+                          <span className="text-xs bg-[color:var(--color-accent)] text-white px-2 py-1 rounded-full">ASK</span>
+                        </h3>
                       <p className="text-sm text-[#6a6a6a] mt-1">Ask about my experience with Python, Spark, or AWS...</p>
                     </div>
                   </div>
@@ -167,7 +167,7 @@ const AboutSection = () => {
               style={{ minHeight: '60px' }}
             >
               <Button 
-                className="group bg-[#0066cc] hover:bg-[#004499] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium border-2 border-[#0066cc] hover:border-[#004499]"
+                className="group bg-[color:var(--color-cta)] hover:bg-[color:var(--color-cta-hover)] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium border-2 border-[color:var(--color-cta)] hover:border-[color:var(--color-cta-hover)]"
                 asChild
               >
                 <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download>
@@ -177,7 +177,7 @@ const AboutSection = () => {
               </Button>
               
               <Button 
-                className="group border-2 border-[#0066cc] text-[#0066cc] hover:bg-[#0066cc] hover:text-white px-6 py-3 rounded-xl transition-all duration-300 font-medium bg-white"
+                className="group border-2 border-[color:var(--color-accent)] text-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)] hover:text-white px-6 py-3 rounded-xl transition-all duration-300 font-medium bg-white"
                 variant="outline"
                 asChild
               >
@@ -211,18 +211,18 @@ const AboutSection = () => {
           className="mt-16"
           style={{ minHeight: '300px' }}
         >
-          <div className="bg-white border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-[#0066cc]/30 transition-all duration-300 relative">
+          <div className="bg-white border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-[color:var(--color-accent)]/30 transition-all duration-300 relative">
             {/* Pattern differentiation */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#008844] to-[#0066cc] rounded-t-2xl" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-[color:var(--color-accent)] rounded-t-2xl" />
             
             <div className="space-y-8">
               <div className="flex items-center justify-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#e6f2ff] flex items-center justify-center border border-[#0066cc]/20">
-                  <Star className="w-5 h-5 text-[#0066cc]" />
+                <div className="w-10 h-10 rounded-xl bg-[color:var(--color-accent-light)] flex items-center justify-center border border-[color:var(--color-accent)]/20">
+                  <Star className="w-5 h-5 text-[color:var(--color-accent)]" />
                 </div>
                 <h3 className="text-2xl font-bold text-[#1a1a1a] flex items-center gap-2">
                   Core Technologies
-                  <span className="text-xs bg-[#008844] text-white px-2 py-1 rounded-full">SKILLS</span>
+                  <span className="text-xs bg-[color:var(--color-accent)] text-white px-2 py-1 rounded-full">SKILLS</span>
                 </h3>
               </div>
               

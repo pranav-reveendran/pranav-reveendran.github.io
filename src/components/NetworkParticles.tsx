@@ -4,16 +4,16 @@ import { useTechHighlight } from '@/context/TechHighlightContext';
 
 // Tech colors mapping with Kintsugi gold palette
 const techColors: Record<string, string> = {
-  spark: '#da7756',    // Claude primary accent
+  spark: 'var(--color-accent)',    // Claude primary accent
   kafka: '#e88968',    // Claude secondary accent  
   aws: '#f5e6e0',      // Claude accent light
-  python: '#da7756',   // Claude primary accent
+  python: 'var(--color-accent)',   // Claude primary accent
   postgres: '#e88968', // Claude secondary accent
   react: '#f5e6e0',    // Claude accent light
-  typescript: '#da7756', // Claude primary accent
+  typescript: 'var(--color-accent)', // Claude primary accent
   node: '#e88968',     // Claude secondary accent
   docker: '#f5e6e0',   // Claude accent light
-  kubernetes: '#da7756', // Claude primary accent
+  kubernetes: 'var(--color-accent)', // Claude primary accent
   scala: '#e88968',    // Claude secondary accent
 };
 
@@ -48,7 +48,7 @@ export default function NetworkParticles() {
     if (highlightedTech && techColors[highlightedTech]) {
       return techColors[highlightedTech];
     }
-    return '#da7756'; // Claude primary accent as default
+    return 'var(--color-accent)'; // Claude primary accent as default
   };
 
   if (!shouldAnimate) {

@@ -18,21 +18,21 @@
   --color-text-muted: #8B8680;     /* Subtle text, captions */
 
   /* ===== BRAND ACCENT (10% - Crail family) ===== */
-  --color-primary: #C15F3C;        /* Crail - primary accent for links/icons */
-  --color-primary-light: #D4795A;  /* Lighter Crail for hover states */
-  --color-primary-dark: #913F28;   /* Darker Crail for active states */
+  --color-primary: var(--color-accent);
+  --color-primary-light: var(--color-accent-light);
+  --color-primary-dark: var(--color-accent-dark);
   --color-primary-50: rgba(193, 95, 60, 0.05);
   --color-primary-100: rgba(193, 95, 60, 0.1);
   --color-primary-200: rgba(193, 95, 60, 0.2);
   --color-primary-300: rgba(193, 95, 60, 0.3);
-  --color-primary-500: #C15F3C;
+  --color-primary-500: var(--color-accent);
   --color-primary-900: rgba(193, 95, 60, 0.9);
 
   /* ===== HIGH-CONVERSION CTA (Strategic Orange) ===== */
-  --color-cta: #FF6B35;            /* Warm CTA - harmonizes with Crail */
+  --color-cta: var(--color-cta);
   --color-cta-light: #FF8659;      /* Lighter for disabled states */
   --color-cta-dark: #E55A2B;       /* Current hover color */
-  --color-cta-hover: #FC6203;      /* Deep Coral - Anthropic's hover accent */
+  --color-cta-hover: var(--color-cta-hover);
   --color-cta-50: rgba(255, 107, 53, 0.05);
   --color-cta-100: rgba(255, 107, 53, 0.1);
   --color-cta-200: rgba(255, 107, 53, 0.2);
@@ -47,12 +47,12 @@
   --color-success: #2D7D5C;        /* Forest green - complements warm palette */
   --color-success-light: #4A9B73;
   --color-success-dark: #1A5A3A;
-  --color-warning: #D4795A;        /* Warm amber - uses primary-light */
+  --color-warning: var(--color-accent-light);
   --color-warning-light: #E09478;
   --color-warning-dark: #B85D3E;
   --color-error: #B85D3E;          /* Warm red - stays in Crail family */
-  --color-error-light: #D4795A;
-  --color-error-dark: #913F28;
+  --color-error-light: var(--color-accent-light);
+  --color-error-dark: var(--color-accent-dark);
 
   /* ===== SEMANTIC GRAYS (Cloudy-based neutral scale) ===== */
   --color-gray-50: #F9F8F6;        /* Lightest - almost Pampas */
@@ -128,10 +128,10 @@
 
 /* ===== HIGH CONTRAST VARIANT ===== */
 :root[data-theme="claude"][data-contrast="high"] {
-  --color-primary: #913F28;        /* Darker Crail for better contrast */
+  --color-primary: var(--color-accent-dark);
   --color-primary-dark: #6B2E1E;   /* Even darker for active states */
   --color-cta: #B24F23;            /* Darker CTA for high contrast */
-  --color-cta-hover: #913F28;      /* Matches dark primary */
+  --color-cta-hover: var(--color-accent-dark);
   --color-text-primary: #000000;   /* Pure black for maximum contrast */
   --color-text-secondary: #2D2B28; /* Darker secondary text */
   --color-border: #474440;         /* Darker borders */

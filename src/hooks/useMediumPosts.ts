@@ -142,99 +142,104 @@ const extractCategories = (content: string): string[] => {
 };
 
 export const useMediumPosts = () => {
-  const [posts, setPosts] = useState<MediumPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<MediumPost[]>(FALLBACK_POSTS); // Start with fallback posts
+  const [loading, setLoading] = useState(false); // Don't block initial render
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchMediumPosts = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        
-        // Fetch RSS feed via CORS proxy
-        const response = await fetch(`${CORS_PROXY}${MEDIUM_RSS_URL}`);
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data, 'text/xml');
-        
-        // Check for parsing errors
-        const parseError = xmlDoc.querySelector('parsererror');
-        if (parseError) {
-          throw new Error('Failed to parse RSS feed');
-        }
-        
-        const items = xmlDoc.querySelectorAll('item');
-        
-        const mediumPosts: MediumPost[] = Array.from(items).map((item, index) => {
-          const title = item.querySelector('title')?.textContent || 'Untitled';
-          const link = item.querySelector('link')?.textContent || '';
-          const pubDate = item.querySelector('pubDate')?.textContent || '';
+    // Defer API call to not block critical path - wait 2 seconds
+    const timer = setTimeout(() => {
+      const fetchMediumPosts = async () => {
+        try {
+          setLoading(true);
+          setError(null);
           
-          // Try multiple selectors for content
-          const contentEncoded = item.querySelector('content\\:encoded')?.textContent || 
-                               item.querySelector('description')?.textContent ||
-                               item.textContent || '';
+          // Fetch RSS feed via CORS proxy
+          const response = await fetch(`${CORS_PROXY}${MEDIUM_RSS_URL}`);
           
-          const author = item.querySelector('dc\\:creator')?.textContent || 'Pranav Reveendran';
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
           
-          // Debug logging for development
-          console.log('Processing Medium post:', {
-            title: title.substring(0, 50),
-            hasContent: !!contentEncoded,
-            contentLength: contentEncoded.length,
-            contentPreview: contentEncoded.substring(0, 200)
+          const data = await response.text();
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(data, 'text/xml');
+          
+          // Check for parsing errors
+          const parseError = xmlDoc.querySelector('parsererror');
+          if (parseError) {
+            throw new Error('Failed to parse RSS feed');
+          }
+          
+          const items = xmlDoc.querySelectorAll('item');
+          
+          const mediumPosts: MediumPost[] = Array.from(items).map((item, index) => {
+            const title = item.querySelector('title')?.textContent || 'Untitled';
+            const link = item.querySelector('link')?.textContent || '';
+            const pubDate = item.querySelector('pubDate')?.textContent || '';
+            
+            // Try multiple selectors for content
+            const contentEncoded = item.querySelector('content\\:encoded')?.textContent || 
+                                 item.querySelector('description')?.textContent ||
+                                 item.textContent || '';
+            
+            const author = item.querySelector('dc\\:creator')?.textContent || 'Pranav Reveendran';
+            
+            // Debug logging for development
+            console.log('Processing Medium post:', {
+              title: title.substring(0, 50),
+              hasContent: !!contentEncoded,
+              contentLength: contentEncoded.length,
+              contentPreview: contentEncoded.substring(0, 200)
+            });
+            
+            // Extract image and create excerpt
+            const imageUrl = extractImageUrl(contentEncoded + ' ' + title);
+            const excerpt = extractExcerpt(contentEncoded);
+            const readTime = estimateReadTime(contentEncoded);
+            const categories = extractCategories(contentEncoded + ' ' + title);
+            
+            // Format date
+            const formattedDate = pubDate ? 
+              new Date(pubDate).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+              }) : 'Recent';
+
+            console.log('Extracted image URL:', imageUrl);
+
+            return {
+              id: `medium-${index}-${Date.now()}`,
+              title: title.replace(/\[.*?\]/g, '').trim(), // Remove any bracketed text
+              excerpt,
+              content: contentEncoded,
+              pubDate: formattedDate,
+              readTime,
+              category: categories,
+              imageUrl,
+              mediumUrl: link,
+              author
+            };
           });
           
-          // Extract image and create excerpt
-          const imageUrl = extractImageUrl(contentEncoded + ' ' + title);
-          const excerpt = extractExcerpt(contentEncoded);
-          const readTime = estimateReadTime(contentEncoded);
-          const categories = extractCategories(contentEncoded + ' ' + title);
+          setPosts(mediumPosts);
+        } catch (err) {
+          console.error('Error fetching Medium posts:', err);
+          setError(err instanceof Error ? err.message : 'Failed to fetch blog posts');
           
-          // Format date
-          const formattedDate = pubDate ? 
-            new Date(pubDate).toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            }) : 'Recent';
+          // Fallback to static posts if Medium fetch fails
+          setPosts(FALLBACK_POSTS);
+        } finally {
+          setLoading(false);
+        }
+      };
 
-          console.log('Extracted image URL:', imageUrl);
+      fetchMediumPosts();
+    }, 2000); // 2 second delay
 
-          return {
-            id: `medium-${index}-${Date.now()}`,
-            title: title.replace(/\[.*?\]/g, '').trim(), // Remove any bracketed text
-            excerpt,
-            content: contentEncoded,
-            pubDate: formattedDate,
-            readTime,
-            category: categories,
-            imageUrl,
-            mediumUrl: link,
-            author
-          };
-        });
-        
-        setPosts(mediumPosts);
-      } catch (err) {
-        console.error('Error fetching Medium posts:', err);
-        setError(err instanceof Error ? err.message : 'Failed to fetch blog posts');
-        
-        // Fallback to static posts if Medium fetch fails
-        setPosts(FALLBACK_POSTS);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMediumPosts();
+    return () => clearTimeout(timer);
   }, []);
 
   return { posts, loading, error };
-}; 
+};

@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// Removed GSAP for performance - using CSS animations instead
 import { useMotionSafe } from '@/hooks/use-motion-safe';
 
 interface Project {
@@ -209,7 +208,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               <div className="flex items-center space-x-2 mt-1">
                 <Calendar className="w-3 h-3 text-gray-500" />
                 <span className="text-xs text-gray-500">{project.period.split(' - ')[0]}</span>
-                <span className="text-xs text-gray-400">•</span>
+                <span className="text-xs text-gray-600 dark:text-gray-300">•</span>
                 <Building2 className="w-3 h-3 text-gray-500" />
                 <span className="text-xs text-gray-500 truncate">{project.organization}</span>
               </div>
@@ -236,7 +235,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               </Badge>
             ))}
             {project.technologies.flatMap(tech => tech.items).length > 6 && (
-              <Badge variant="outline" className="text-xs bg-gray-50 border-[#da7756]/30 text-gray-500">
+                                      <Badge variant="outline" className="text-xs bg-gray-50 border-[color:var(--color-accent)]/30 text-gray-500">
                 +{project.technologies.flatMap(tech => tech.items).length - 6}
               </Badge>
             )}
@@ -366,60 +365,24 @@ const ProjectsSection = () => {
     return filtered;
   }, [selectedCategory, searchTerm, categories]);
 
-  // GSAP animations
+  // CSS-based animations for better performance (no GSAP)
   useEffect(() => {
-    // Always ensure cards are visible first
-    if (cardsRef.current) {
-      const cards = cardsRef.current.children;
-      gsap.set(cards, { opacity: 1, y: 0 });
+    if (!shouldAnimate) return;
+
+    // Add CSS animation classes for Intersection Observer
+    const heading = headingRef.current;
+    const cards = cardsRef.current?.children;
+
+    if (heading) {
+      heading.setAttribute('data-animate-on-scroll', '');
     }
 
-    if (!shouldAnimate) {
-      return;
-    }
-    
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Animate section heading
-    if (headingRef.current) {
-      gsap.from(headingRef.current.children, {
-        scrollTrigger: {
-          trigger: headingRef.current,
-          start: 'top bottom-=100',
-          toggleActions: 'play none none none',
-        },
-        y: 40,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: "power3.out"
+    if (cards) {
+      Array.from(cards).forEach((card, index) => {
+        card.setAttribute('data-animate-on-scroll', '');
+        card.setAttribute('data-delay', String(index));
       });
     }
-    
-    // Animate project cards with minimal effect
-    if (cardsRef.current) {
-      const cards = cardsRef.current.children;
-      gsap.from(cards, {
-        scrollTrigger: {
-          trigger: cardsRef.current,
-          start: 'top bottom-=50',
-          toggleActions: 'play none none none',
-        },
-        y: 10,
-        opacity: 0.9,
-        stagger: 0.05,
-        duration: 0.2,
-        ease: "power1.out",
-        onComplete: () => {
-          // Ensure all cards are fully visible after animation
-          gsap.set(cards, { opacity: 1, y: 0 });
-        }
-      });
-    }
-    
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
   }, [shouldAnimate, filteredProjects]);
 
   return (
@@ -439,7 +402,7 @@ const ProjectsSection = () => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900" id="projects-heading">
-            Project <span className="text-[#da7756]">Showcase</span>
+                          Project <span className="text-[color:var(--color-accent)]">Showcase</span>
           </h2>
           
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -450,15 +413,15 @@ const ProjectsSection = () => {
           {/* Stats */}
           <div className="flex items-center justify-center space-x-8 mt-8 pt-8 border-t border-gray-200">
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#da7756]">30+</div>
+                              <div className="text-3xl font-bold text-[color:var(--color-accent)]">30+</div>
               <div className="text-sm text-gray-500">Projects</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#da7756]">{categories.length - 1}</div>
+                              <div className="text-3xl font-bold text-[color:var(--color-accent)]">{categories.length - 1}</div>
               <div className="text-sm text-gray-500">Categories</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#da7756]">50M+</div>
+                              <div className="text-3xl font-bold text-[color:var(--color-accent)]">50M+</div>
               <div className="text-sm text-gray-500">Records Processed</div>
             </div>
           </div>
@@ -473,7 +436,7 @@ const ProjectsSection = () => {
                   <TabsTrigger 
                     key={category} 
                     value={category}
-                    className="data-[state=active]:bg-[#da7756] data-[state=active]:text-white transition-all duration-300 px-3 py-2 rounded-md text-sm whitespace-nowrap"
+                    className="data-[state=active]:bg-[color:var(--color-accent)] data-[state=active]:text-white transition-all duration-300 px-3 py-2 rounded-md text-sm whitespace-nowrap"
                   >
                     {category}
                   </TabsTrigger>
@@ -486,7 +449,7 @@ const ProjectsSection = () => {
                   placeholder="Search projects..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="bg-gray-100 border border-gray-200 rounded-lg px-4 py-2 pl-10 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#da7756]/50 focus:border-[#da7756] transition-all duration-300 w-64"
+                  className="bg-gray-100 border border-gray-200 rounded-lg px-4 py-2 pl-10 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent)]/50 focus:border-[color:var(--color-accent)] transition-all duration-300 w-64"
                 />
                 <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-600 dark:text-gray-300" />
               </div>
@@ -516,7 +479,7 @@ const ProjectsSection = () => {
         {filteredProjects.length === 0 && (
           <div className="text-center py-16">
             <div className="w-24 h-24 mx-auto mb-4 opacity-20">
-              <Filter className="w-full h-full text-gray-400" />
+              <Filter className="w-full h-full text-gray-600 dark:text-gray-300" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No projects found</h3>
             <p className="text-gray-600">Try adjusting your search or filter criteria</p>
@@ -529,7 +492,7 @@ const ProjectsSection = () => {
             <Button
               size="lg"
               asChild
-              className="bg-[#da7756] hover:bg-[#da7756]/90 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="bg-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)]/90 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
             >
               <a href="https://github.com/pranav-reveendran" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
@@ -541,7 +504,7 @@ const ProjectsSection = () => {
               variant="outline"
               size="lg"
               asChild
-              className="border-[#da7756]/30 text-[#da7756] hover:bg-[#da7756] hover:text-white transition-all duration-300 px-8 py-3"
+              className="border-[color:var(--color-accent)]/30 text-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)] hover:text-white transition-all duration-300 px-8 py-3"
             >
               <a href="#contact">
                 <span>Let's Collaborate</span>

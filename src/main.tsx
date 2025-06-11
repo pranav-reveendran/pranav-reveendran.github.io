@@ -5,7 +5,6 @@
 
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
-import './assets/fonts/inter.css'
 import './styles/theme.css'
 import './index.css'
 import { ThemeProvider } from './context/ThemeContext'

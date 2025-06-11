@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence, useAnimationControls, useInView } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, MapPin, TrendingUp, Users, Award, ChevronRight, Briefcase, Star, Code2, Database, BarChart3, Search, Filter, Building2, Clock, MapPinIcon, Zap, Target, Trophy, Sparkles, Code } from 'lucide-react';
 import { experienceData } from '@/data/experience';
 import { useMotionSafe } from '@/hooks/use-motion-safe';
@@ -10,8 +10,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Progress } from '@/components/ui/progress';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Import separated components for better code splitting
+import { CompactExperienceCard } from '@/components/experience/ExperienceCard';
+import { CareerProgress } from '@/components/experience/CareerProgress';
 
 // Company logos mapping - using reliable sources
 const companyLogos = {
@@ -23,38 +25,7 @@ const companyLogos = {
   "EY": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/EY_logo_2019.svg/100px-EY_logo_2019.svg.png"
 };
 
-// Animated Counter Component
-const AnimatedCounter = ({ value, suffix = '', duration = 2 }: { value: string; suffix?: string; duration?: number }) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref);
-  
-  useEffect(() => {
-    if (isInView) {
-      const numericValue = parseInt(value.replace(/[^\d]/g, '')) || 0;
-      let start = 0;
-      const increment = numericValue / (duration * 60);
-      
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= numericValue) {
-          setCount(numericValue);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(start));
-        }
-      }, 1000 / 60);
-      
-      return () => clearInterval(timer);
-    }
-  }, [isInView, value, duration]);
-  
-  return (
-    <div ref={ref}>
-      {count}{value.includes('%') ? '%' : value.includes('TB') ? 'TB' : value.includes('+') ? '+' : ''}{suffix}
-    </div>
-  );
-};
+// Removed AnimatedCounter - moved to CareerProgress component
 
 // Modern floating elements
 const FloatingElements = () => (
@@ -92,120 +63,7 @@ const FloatingElements = () => (
   </div>
 );
 
-// Career Progress Component - Fixed layout for same row
-const CareerProgress = ({ experiences }: { experiences: any[] }) => {
-  const totalYears = experiences.reduce((acc, exp) => {
-    const duration = exp.duration.toLowerCase();
-    if (duration.includes('year')) {
-      const years = parseInt(duration.match(/(\d+)/)?.[0] || '0');
-      const months = duration.includes('month') ? parseInt(duration.match(/(\d+)\s*month/)?.[0] || '0') : 0;
-      return acc + years + (months / 12);
-    } else if (duration.includes('month')) {
-      const months = parseInt(duration.match(/(\d+)/)?.[0] || '0');
-      return acc + (months / 12);
-    }
-    return acc + 0.5;
-  }, 0);
-
-  const companies = [...new Set(experiences.map(exp => exp.company))].length;
-  const skills = [...new Set(experiences.flatMap(exp => exp.skills))].length;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.4 }}
-      className="relative overflow-hidden"
-    >
-      {/* Modern glass morphism background */}
-      <div className="absolute inset-0 bg-hero-50/80 backdrop-blur-xl rounded-2xl" />
-      <div className="absolute inset-0 bg-gradient-to-br from-cta-50/20 via-transparent to-accent-100/10 rounded-2xl" />
-      
-      {/* Enhanced Border */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-cta-200/40 shadow-lg" />
-      
-      <div className="relative p-8">
-        {/* Stats in same row with consistent design */}
-        <div className="flex items-center justify-between gap-8">
-          {/* Years Experience */}
-          <div className="flex-1 text-center group">
-            <motion.div 
-              className="relative mb-3"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-            >
-              <div className="text-4xl font-bold text-cta-600 mb-1 font-heading">
-                <AnimatedCounter value={Math.ceil(totalYears).toString()} />+
-              </div>
-              <div className="text-sm font-medium text-cta-700 uppercase tracking-wider font-primary">Years Experience</div>
-            </motion.div>
-            <div className="w-full bg-cta-100/30 rounded-full h-2 overflow-hidden border border-cta-200/40">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-cta-400 to-cta-500 rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: `${Math.min((totalYears / 8) * 100, 100)}%` }}
-                transition={{ delay: 1, duration: 1.5, ease: "easeOut" }}
-              />
-            </div>
-          </div>
-          
-          {/* Separator */}
-          <div className="w-px h-16 bg-cta-300/50 shadow-sm" />
-          
-          {/* Companies */}
-          <div className="flex-1 text-center group">
-            <motion.div 
-              className="relative mb-3"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
-            >
-              <div className="text-4xl font-bold text-cta-600 mb-1 font-heading">
-                <AnimatedCounter value={companies.toString()} />
-              </div>
-              <div className="text-sm font-medium text-cta-700 uppercase tracking-wider font-primary">Companies</div>
-            </motion.div>
-            <div className="w-full bg-cta-100/30 rounded-full h-2 overflow-hidden border border-cta-200/40">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-cta-400 to-cta-500 rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: `${(companies / 6) * 100}%` }}
-                transition={{ delay: 1.2, duration: 1.5, ease: "easeOut" }}
-              />
-            </div>
-          </div>
-          
-          {/* Separator */}
-          <div className="w-px h-16 bg-cta-300/50 shadow-sm" />
-          
-          {/* Skills */}
-          <div className="flex-1 text-center group">
-            <motion.div 
-              className="relative mb-3"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 1, type: "spring", stiffness: 200 }}
-            >
-              <div className="text-4xl font-bold text-cta-600 mb-1 font-heading">
-                <AnimatedCounter value={skills.toString()} />+
-              </div>
-              <div className="text-sm font-medium text-cta-700 uppercase tracking-wider font-primary">Skills Mastered</div>
-            </motion.div>
-            <div className="w-full bg-cta-100/30 rounded-full h-2 overflow-hidden border border-cta-200/40">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-cta-400 to-cta-500 rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: `${Math.min((skills / 30) * 100, 100)}%` }}
-                transition={{ delay: 1.4, duration: 1.5, ease: "easeOut" }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+// Removed CareerProgress - moved to separate component file
 
 const ExperienceSection = () => {
   const shouldAnimate = useMotionSafe();
@@ -280,31 +138,18 @@ const ExperienceSection = () => {
     }
   }, [filteredExperiences, selectedExperienceId]);
 
-  // GSAP animations
+  // CSS-based animations for better performance (no GSAP)
   useEffect(() => {
     if (!shouldAnimate) return;
     
-    gsap.registerPlugin(ScrollTrigger);
-    
+    // Add CSS animation classes for Intersection Observer
     if (cardsRef.current) {
       const cards = cardsRef.current.children;
-      gsap.from(cards, {
-        scrollTrigger: {
-          trigger: cardsRef.current,
-          start: 'top bottom-=100',
-          toggleActions: 'play none none reverse',
-        },
-        y: 30,
-        opacity: 0,
-        stagger: 0.08,
-        duration: 0.6,
-        ease: "power3.out"
+      Array.from(cards).forEach((card, index) => {
+        card.setAttribute('data-animate-on-scroll', '');
+        card.setAttribute('data-delay', String(index));
       });
     }
-    
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
   }, [shouldAnimate, filteredExperiences]);
 
   // Get current selected experience - simpler approach
@@ -353,7 +198,7 @@ const ExperienceSection = () => {
   }, [selectedExperienceIndex, filteredExperiences.length]);
 
   const CompactExperienceCard = ({ experience, index, isActive, onClick }: any) => (
-    <motion.div
+    <motion.button
       initial={shouldAnimate ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: shouldAnimate ? index * 0.05 : 0, duration: shouldAnimate ? 0.4 : 0 }}
@@ -362,25 +207,29 @@ const ExperienceSection = () => {
         transition: { duration: 0.2, type: "spring", stiffness: 400 } 
       }}
       onClick={onClick}
-      className={`cursor-pointer transition-all duration-300 ${isActive ? 'scale-[1.01]' : ''} group flex-shrink-0`}
+      className={`cursor-pointer transition-all duration-300 ${isActive ? 'scale-[1.01]' : ''} group flex-shrink-0 w-full bg-transparent border-none p-0`}
       style={{ width: '100%' }}
+      aria-label={`View details for ${experience.title} at ${experience.company}`}
+      aria-expanded={isActive}
+      role="button"
+      tabIndex={0}
     >
       <Card className={`relative overflow-hidden backdrop-blur-sm transition-all duration-300 flex flex-col ${
         isActive 
-          ? 'bg-white ring-2 ring-[#0066cc]/40 shadow-2xl shadow-[#0066cc]/10 border-[#0066cc]/60 scale-[1.02]' 
-          : 'bg-white border-[#e5e5e5] hover:border-[#0066cc]/30 hover:shadow-xl hover:shadow-[#0066cc]/5 hover:scale-[1.01]'
+                  ? 'bg-white ring-2 ring-[color:var(--color-accent)]/40 shadow-2xl shadow-[color:var(--color-accent)]/10 border-[color:var(--color-accent)]/60 scale-[1.02]'
+        : 'bg-white border-[#e5e5e5] hover:border-[color:var(--color-accent)]/30 hover:shadow-xl hover:shadow-[color:var(--color-accent)]/5 hover:scale-[1.01]'
       } border-2 rounded-2xl cursor-pointer`} style={{ height: '300px', minHeight: '300px', maxHeight: '300px' }}>
         
         {/* Colorblind-friendly header accent */}
         <div className={`h-1 bg-gradient-to-r ${
           isActive 
-            ? 'from-[#0066cc] via-[#004499] to-[#0066cc]' 
-            : 'from-[#0066cc] via-[#004499] to-[#0066cc]'
+                        ? 'from-[color:var(--color-accent)] via-[color:var(--color-accent-dark)] to-[color:var(--color-accent)]'
+            : 'from-[color:var(--color-accent)] via-[color:var(--color-accent-dark)] to-[color:var(--color-accent)]'
         }`} />
         
         {/* Pattern indicator for accessibility */}
         <div className="absolute top-4 right-4 flex gap-1">
-          <div className="w-2 h-2 rounded-full bg-[#0066cc]" />
+                        <div className="w-2 h-2 rounded-full bg-[color:var(--color-accent)]" />
           <div className="w-1 h-2 rounded-full bg-[#008844]" />
         </div>
         
@@ -477,7 +326,7 @@ const ExperienceSection = () => {
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </motion.button>
   );
 
   const ExperienceDetail = ({ experience }: { experience: any }) => (
@@ -619,19 +468,19 @@ const ExperienceSection = () => {
           {/* Title Section */}
           <div className="text-center mb-8">
             <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-4" id="experience-heading">
-              <span className="text-[#0066cc] relative">
+              <span className="text-[color:var(--color-accent)] relative">
                 EXPERIENCE
-                <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#0066cc] to-[#004499] rounded-full opacity-60" />
+                <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[color:var(--color-accent)] to-[color:var(--color-accent-dark)] rounded-full opacity-60" />
               </span>
             </h2>
             
             {/* Professional Experience Badge */}
-            <div className="inline-flex items-center gap-3 mb-4 px-6 py-3 rounded-full border-2 border-[#0066cc]/30 bg-[#0066cc]/10 backdrop-blur-sm">
-              <Briefcase className="w-5 h-5 text-[#0066cc]" />
-              <span className="text-sm font-semibold text-[#0066cc] uppercase tracking-wider">
+            <div className="inline-flex items-center gap-3 mb-4 px-6 py-3 rounded-full border-2 border-[color:var(--color-accent)]/30 bg-[color:var(--color-accent)]/10 backdrop-blur-sm">
+              <Briefcase className="w-5 h-5 text-[color:var(--color-accent)]" />
+              <span className="text-sm font-semibold text-[color:var(--color-accent)] uppercase tracking-wider">
                 4+ YOE PROFESSIONAL EXPERIENCE
               </span>
-              <Star className="w-4 h-4 text-[#0066cc]" />
+              <Star className="w-4 h-4 text-[color:var(--color-accent)]" />
             </div>
             
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -640,9 +489,9 @@ const ExperienceSection = () => {
           </div>
 
           {/* Career Progress - Compact */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50/30 border border-[#0066cc]/20 rounded-2xl p-6 mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <TrendingUp className="w-6 h-6 text-[#0066cc]" />
+                      <div className="bg-gradient-to-br from-blue-50 to-indigo-50/30 border border-[color:var(--color-accent)]/20 rounded-2xl p-6 mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <TrendingUp className="w-6 h-6 text-[color:var(--color-accent)]" />
               <div>
                 <h3 className="text-lg font-bold text-gray-900">Career Progress</h3>
                 <p className="text-sm text-gray-600">Professional growth metrics</p>
@@ -652,7 +501,7 @@ const ExperienceSection = () => {
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200/60 flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-[#0066cc]" />
+                  <Calendar className="w-6 h-6 text-[color:var(--color-accent)]" />
                 </div>
                 <div className="text-2xl font-bold text-gray-800 mb-1">4+</div>
                 <p className="text-sm text-gray-600 font-medium">Years Experience</p>
@@ -679,18 +528,18 @@ const ExperienceSection = () => {
           {/* Search & Filter Section */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-6">
             <div className="flex items-center gap-3 mb-4">
-              <Search className="w-5 h-5 text-[#0066cc]" />
+                              <Search className="w-5 h-5 text-[color:var(--color-accent)]" />
               <h3 className="text-lg font-semibold text-gray-900">Search & Filter Experiences</h3>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-600 dark:text-gray-300" />
                 <Input
                   placeholder="Search by role, company, or skills..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 text-base border-gray-200 focus:border-[#0066cc] bg-white"
+                  className="pl-10 h-12 text-base border-gray-200 focus:border-[color:var(--color-accent)] bg-white"
                 />
               </div>
               <Select value={selectedCompany} onValueChange={setSelectedCompany}>
@@ -733,7 +582,7 @@ const ExperienceSection = () => {
                     setSelectedCompany('all');
                     setSelectedType('all');
                   }}
-                  className="text-[#0066cc] hover:text-[#004499] h-8 px-3 text-xs"
+                  className="text-[color:var(--color-accent)] hover:text-[color:var(--color-accent-dark)] h-8 px-3 text-xs"
                 >
                   Clear filters
                 </Button>
@@ -747,23 +596,23 @@ const ExperienceSection = () => {
           <div className="h-full grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left Panel - Experience Timeline */}
             <div className="h-full">
-              <div className="relative h-full rounded-2xl border-2 border-[#0066cc]/20 bg-white backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="relative h-full rounded-2xl border-2 border-[color:var(--color-accent)]/20 bg-white backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 {/* Blue top stripe for colorblind accessibility */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0066cc] to-[#004499]" />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#e6f2ff]/10 via-transparent to-[#e6f2ff]/10" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[color:var(--color-accent)] to-[color:var(--color-accent-dark)]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-accent-light)]/10 via-transparent to-[color:var(--color-accent-light)]/10" />
                 
                 {/* Panel Header */}
-                <div className="relative border-b border-[#0066cc]/20" style={{ padding: '16px' }}>
+                <div className="relative border-b border-[color:var(--color-accent)]/20" style={{ padding: '16px' }}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-[#e6f2ff] flex items-center justify-center border border-[#0066cc]/20">
-                        <Building2 className="w-4 h-4 text-[#0066cc]" />
+                      <div className="w-8 h-8 rounded-lg bg-[color:var(--color-accent-light)]/30 flex items-center justify-center border border-[color:var(--color-accent)]/20">
+                        <Building2 className="w-4 h-4 text-[color:var(--color-accent)]" />
                       </div>
                       <h3 className="font-semibold text-[#1a1a1a] font-heading text-lg">
                         Experience Timeline
                       </h3>
                     </div>
-                    <div className="text-xs bg-[#0066cc] text-white px-2 py-1 rounded-full font-medium">
+                    <div className="text-xs bg-[color:var(--color-accent)] text-white px-2 py-1 rounded-full font-medium">
                       {filteredExperiences.length}
                     </div>
                   </div>
@@ -772,7 +621,7 @@ const ExperienceSection = () => {
                 {/* Timeline Container - Shows exactly 1.5 items */}
                 <div 
                   ref={cardsRef}
-                  className="relative overflow-y-auto flex flex-col scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-[#0066cc]/30 hover:scrollbar-thumb-[#0066cc]/50"
+                  className="relative overflow-y-auto flex flex-col scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-[color:var(--color-accent)]/30 hover:scrollbar-thumb-[color:var(--color-accent)]/50"
                   style={{ 
                     height: 'calc(100% - 80px)',
                     maxHeight: '910px',
@@ -802,7 +651,7 @@ const ExperienceSection = () => {
                       transition={{ duration: 0.5 }}
                     >
                       <div className="space-y-6">
-                        <Filter className="w-16 h-16 text-[#0066cc]/50 mx-auto" />
+                        <Filter className="w-16 h-16 text-[color:var(--color-accent)]/50 mx-auto" />
                         <div>
                           <p className="text-[#1a1a1a] text-lg mb-2 font-heading">No experiences match your search</p>
                           <p className="text-[#6a6a6a] text-sm font-body">Try adjusting your filters or search terms</p>
@@ -818,7 +667,7 @@ const ExperienceSection = () => {
                               setSelectedCompany('all');
                               setSelectedType('all');
                             }}
-                            className="text-[#0066cc] hover:text-[#004499] hover:bg-[#e6f2ff] font-medium"
+                            className="text-[color:var(--color-accent)] hover:text-[color:var(--color-accent-dark)] hover:bg-[color:var(--color-accent-light)]/30 font-medium"
                           >
                             Clear all filters
                           </Button>
@@ -829,12 +678,12 @@ const ExperienceSection = () => {
 
                   {/* Scroll indicator at bottom */}
                   {filteredExperiences.length > 2 && (
-                    <div className="sticky bottom-0 text-center py-3 bg-gradient-to-t from-white via-white/95 to-transparent border-t border-[#0066cc]/10">
-                      <div className="text-xs text-[#0066cc] font-medium flex items-center justify-center gap-2">
+                    <div className="sticky bottom-0 text-center py-3 bg-gradient-to-t from-white via-white/95 to-transparent border-t border-[color:var(--color-accent)]/10">
+                      <div className="text-xs text-[color:var(--color-accent)] font-medium flex items-center justify-center gap-2">
                         <div className="flex space-x-1">
-                          <div className="w-1 h-1 rounded-full bg-[#0066cc] animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                          <div className="w-1 h-1 rounded-full bg-[#0066cc] animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                          <div className="w-1 h-1 rounded-full bg-[#0066cc] animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                          <div className="w-1 h-1 rounded-full bg-[color:var(--color-accent)] animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                          <div className="w-1 h-1 rounded-full bg-[color:var(--color-accent)] animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                          <div className="w-1 h-1 rounded-full bg-[color:var(--color-accent)] animate-bounce" style={{ animationDelay: '300ms' }}></div>
                         </div>
                         Scroll for more experiences
                       </div>
@@ -846,16 +695,16 @@ const ExperienceSection = () => {
 
             {/* Right Panel - Experience Details */}
             <div className="h-full">
-              <div className="relative h-full rounded-2xl border-2 border-[#0066cc]/20 bg-white backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="relative h-full rounded-2xl border-2 border-[color:var(--color-accent)]/20 bg-white backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 {/* Green top stripe for colorblind accessibility */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#008844] to-[#006622]" />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#e6f2ff]/5 via-transparent to-[#e6f2ff]/5" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-accent-light)]/5 via-transparent to-[color:var(--color-accent-light)]/5" />
                 
                 {/* Panel Header */}
-                <div className="relative border-b border-[#0066cc]/20" style={{ padding: '16px' }}>
+                <div className="relative border-b border-[color:var(--color-accent)]/20" style={{ padding: '16px' }}>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#e6f2ff] flex items-center justify-center border border-[#0066cc]/20">
-                      <Trophy className="w-4 h-4 text-[#0066cc]" />
+                    <div className="w-8 h-8 rounded-lg bg-[color:var(--color-accent-light)]/30 flex items-center justify-center border border-[color:var(--color-accent)]/20">
+                      <Trophy className="w-4 h-4 text-[color:var(--color-accent)]" />
                     </div>
                     <h3 className="font-semibold text-[#1a1a1a] font-heading text-lg">
                       Experience Details

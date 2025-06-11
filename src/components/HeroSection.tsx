@@ -206,19 +206,19 @@ const HeroSection: React.FC = () => {
                 style={{ minHeight: '180px' }}
               >
                 <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-[#0066cc] mb-1">4+</div>
+                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">4+</div>
                   <div className="text-sm text-gray-600">Years building production ML pipelines</div>
                 </div>
                 <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-[#0066cc] mb-1">100M+</div>
+                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">100M+</div>
                   <div className="text-sm text-gray-600">Daily requests served</div>
                 </div>
                 <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-[#0066cc] mb-1">60%</div>
+                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">60%</div>
                   <div className="text-sm text-gray-600">Cost reduction achieved</div>
                 </div>
                 <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-[#0066cc] mb-1">50+</div>
+                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">50+</div>
                   <div className="text-sm text-gray-600">ML models in production</div>
                 </div>
               </motion.div>
@@ -284,11 +284,11 @@ const HeroSection: React.FC = () => {
                   <div className="text-sm font-medium text-gray-700 mb-3">Real-time Metrics</div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">Processed rows today:</span>
-                    <span className="font-mono text-[#0066cc]">47,047,912</span>
+                    <span className="font-mono text-[color:var(--color-accent)]">47,047,912</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">Pipeline latency:</span>
-                    <span className="font-mono text-[#0066cc]">23ms 📈</span>
+                    <span className="font-mono text-[color:var(--color-accent)]">23ms 📈</span>
                   </div>
                 </div>
 

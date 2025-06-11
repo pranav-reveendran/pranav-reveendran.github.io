@@ -78,7 +78,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ onNameTyped }) => {
       {text.length === fullName.length && (
         <>
           <motion.h2 
-            className="text-2xl md:text-3xl font-bold tracking-wide text-[#0066cc] mb-2"
+            className="text-2xl md:text-3xl font-bold tracking-wide text-[color:var(--color-accent)] mb-2"
             initial={shouldAnimate ? { opacity: 0, y: 10 } : undefined}
             animate={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.6, delay: 0.3 }}

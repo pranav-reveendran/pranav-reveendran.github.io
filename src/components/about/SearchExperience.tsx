@@ -93,7 +93,7 @@ const SearchExperience: React.FC<SearchExperienceProps> = ({
             ref={inputRef}
             type="text"
             placeholder={isPlaceholderChanging ? "" : placeholders[currentPlaceholderIndex]}
-            className="peer w-full rounded-xl bg-[#f8f9fa] border-2 border-[#e5e5e5] px-6 py-4 pr-12 focus:ring-2 focus:ring-[#0066cc] focus:border-[#0066cc] outline-none transition-all duration-300 text-[#1a1a1a] placeholder:text-[#6a6a6a] h-14"
+            className="peer w-full rounded-xl bg-[#f8f9fa] border-2 border-[#e5e5e5] px-6 py-4 pr-12 focus:ring-2 focus:ring-[color:var(--color-accent)] focus:border-[color:var(--color-accent)] outline-none transition-all duration-300 text-[#1a1a1a] placeholder:text-[#6a6a6a] h-14"
             value={searchQuery}
             onChange={handleInputChange}
             onFocus={() => {
@@ -114,7 +114,7 @@ const SearchExperience: React.FC<SearchExperienceProps> = ({
           
           <button 
             type="submit" 
-            className="absolute right-5 top-1/2 -translate-y-1/2 text-[#6a6a6a] hover:text-[#0066cc] transition-colors"
+            className="absolute right-5 top-1/2 -translate-y-1/2 text-[#6a6a6a] hover:text-[color:var(--color-accent)] transition-colors"
           >
             <Search className="h-5 w-5" />
           </button>
@@ -132,7 +132,7 @@ const SearchExperience: React.FC<SearchExperienceProps> = ({
               {filteredSuggestions.map((suggestion) => (
                 <li 
                   key={suggestion}
-                  className="px-4 py-2 hover:bg-[#e6f2ff] cursor-pointer text-sm text-[#1a1a1a] transition-colors"
+                  className="px-4 py-2 hover:bg-[color:var(--color-accent-light)]/30 cursor-pointer text-sm text-[#1a1a1a] transition-colors"
                   onMouseDown={() => applySuggestion(suggestion)}
                 >
                   {suggestion}
@@ -150,7 +150,7 @@ const SearchExperience: React.FC<SearchExperienceProps> = ({
           className="mt-4 p-4 bg-[#f8f9fa] border border-[#e5e5e5] rounded-xl shadow-sm"
         >
           <div className="flex items-start">
-            <div className="h-8 w-8 rounded-full bg-[#0066cc] text-white flex items-center justify-center mr-3 mt-1 text-sm font-medium">
+            <div className="h-8 w-8 rounded-full bg-[color:var(--color-accent)] text-white flex items-center justify-center mr-3 mt-1 text-sm font-medium">
               AI
             </div>
             <div className="flex-1">
@@ -158,7 +158,7 @@ const SearchExperience: React.FC<SearchExperienceProps> = ({
               <div className="text-sm text-[#4a4a4a] leading-relaxed">
                 {responseMessage}
                 {isTyping && (
-                  <span className="inline-block ml-1 animate-pulse text-[#0066cc]">▋</span>
+                  <span className="inline-block ml-1 animate-pulse text-[color:var(--color-accent)]">▋</span>
                 )}
               </div>
             </div>

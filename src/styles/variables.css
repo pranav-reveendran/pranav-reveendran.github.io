@@ -1,23 +1,23 @@
 :root {
-  /* Primary Brand Colors */
-  --color-primary: #da7756;
+  /* Default theme variables */
+
+  /* Legacy Primary Brand Colors (for existing components) */
+  --color-primary: var(--color-accent);
   --color-primary-light: #e69478;
   --color-primary-dark: #c85d3e;
   --color-primary-50: rgba(218, 119, 86, 0.05);
   --color-primary-100: rgba(218, 119, 86, 0.1);
   --color-primary-200: rgba(218, 119, 86, 0.2);
   --color-primary-300: rgba(218, 119, 86, 0.3);
-  --color-primary-500: #da7756;
+  --color-primary-500: var(--color-accent);
   --color-primary-900: rgba(218, 119, 86, 0.9);
 
-  /* Warm CTA Color - Orange-Red for High Conversion */
-  --color-cta: #ff6b35;
+  /* Legacy CTA Colors (maintained for backwards compatibility) */
   --color-cta-light: #ff8659;
   --color-cta-dark: #e55a2b;
   --color-cta-50: rgba(255, 107, 53, 0.05);
   --color-cta-100: rgba(255, 107, 53, 0.1);
   --color-cta-200: rgba(255, 107, 53, 0.2);
-  --color-cta-hover: #e55a2b;
 
   /* Surface Colors */
   --color-surface: #ffffff;
@@ -27,7 +27,6 @@
   --color-surface-overlay: rgba(255, 255, 255, 0.95);
 
   /* Text Colors */
-  --color-text-primary: #1e293b;
   --color-text-secondary: #64748b;
   --color-text-tertiary: #94a3b8;
   --color-text-inverse: #ffffff;
@@ -112,6 +111,27 @@
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 250ms ease-in-out;
   --transition-slow: 350ms ease-in-out;
+}
+
+/* ──────────────────────────────────────────────────────────────
+     CLAUDE THEME • Warm neutral canvas + burnt-orange accents
+   ────────────────────────────────────────────────────────────── */
+:root[data-theme="claude"] {
+  /* canvas & copy */
+  --color-bg:            #eeece2;   /* warm-light background */
+  --color-text-primary:  #3d3929;   /* high-contrast body / headings */
+
+  /* accent family */
+  --color-accent:        #bd5d3a;   /* tags, icons, links */
+  --color-accent-dark:   #8e442b;   /* ≈15 % darker → small text & focus ring */
+  --color-accent-light:  #d57953;   /* ≈15 % lighter → chip / icon backgrounds */
+
+  /* primary CTA */
+  --color-cta:           var(--color-accent);
+  --color-cta-hover:     color-mix(in srgb, var(--color-accent) 80%, #000 20%);
+
+  /* NEW – card surface tint (subtle lift above bg) */
+  --color-surface:       #f8f7f3;
 }
 
 /* Dark mode support (for future implementation) */

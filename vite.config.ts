@@ -85,15 +85,107 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Enhanced build optimization for aggressive minification
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          animations: ['framer-motion', 'gsap']
-        }
+    // Enable source maps only for debugging in production if needed
+    sourcemap: false,
+    
+    // Target modern browsers for smaller bundles
+    target: 'esnext',
+    
+    // Safe minification that preserves functionality
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        // Safe optimizations only
+        dead_code: true,
+        conditionals: true,
+        evaluate: true,
+        loops: true,
+        unused: true
+      },
+      mangle: {
+        // Basic name mangling
+        reserved: ['React', 'ReactDOM']
+      },
+      format: {
+        comments: false
       }
     },
-    chunkSizeWarningLimit: 1000
+    
+    // Optimize chunks and reduce bundle size
+    rollupOptions: {
+      output: {
+        // Let Vite handle chunking automatically for better optimization
+        
+        // Optimize chunk file names
+        chunkFileNames: (chunkInfo) => {
+          if (chunkInfo.facadeModuleId?.includes('node_modules')) {
+            return 'vendor/[name]-[hash].js';
+          }
+          return 'chunks/[name]-[hash].js';
+        },
+        
+        // Optimize asset file names
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'css/[name]-[hash].css';
+          }
+          return 'assets/[name]-[hash][extname]';
+        }
+      },
+      
+      // Basic tree shaking
+      treeshake: {
+        preset: 'recommended'
+      }
+    },
+    
+    // Increase chunk size warning limit for production
+    chunkSizeWarningLimit: 500,
+    
+    // Optimize CSS
+    cssCodeSplit: true,
+    cssMinify: true,
+    
+    // Enable asset inlining for small files
+    assetsInlineLimit: 4096, // 4KB
+    
+    // Report compressed file sizes
+    reportCompressedSize: true,
+    
+    // Enable build analyzer
+    write: true
+  },
+  
+  // Optimize dependencies
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'framer-motion',
+      'lucide-react'
+    ],
+    exclude: [
+      // Exclude large dependencies that should be code-split
+    ]
+  },
+  
+  // Enable aggressive esbuild optimizations for dependencies
+  esbuild: {
+    // Drop console in production
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
+    // Target modern browsers
+    target: 'esnext',
+    // Legal comments handling
+    legalComments: 'none',
+    // Minify identifiers
+    minifyIdentifiers: true,
+    // Minify syntax
+    minifySyntax: true,
+    // Minify whitespace
+    minifyWhitespace: true
   }
 }));

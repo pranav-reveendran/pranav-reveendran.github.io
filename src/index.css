@@ -11,47 +11,7 @@
 
 /* ▼ CONSISTENT DESIGN SYSTEM ▼ */
 
-:root {
-  /* ▼ CLAUDE COLOR PALETTE ▼ */
-  
-  /* BACKGROUNDS */
-  --bg-main: #ffffff;           /* Main Page Background */
-  --bg-section: #fafaf9;        /* Section Alternating */
-  --bg-dark-section: #f5f4f2;   /* Tertiary background */
-  
-  /* SURFACES (Cards, Modals, Panels) */
-  --surface-primary: #fafaf9;    /* Primary Cards */
-  --surface-elevated: #f5f4f2;   /* Elevated Cards */
-  --surface-code: #f5f4f2;       /* Code Blocks */
-  
-  /* TEXT COLORS */
-  --text-primary: #1a1a1a;       /* Primary Text */
-  --text-secondary: #4a4a4a;     /* Secondary Text */
-  --text-muted: #6a6a6a;         /* Muted Text */
-  --text-light: #ffffff;         /* Light Backgrounds Text */
-  --text-dark-bg: #f5f5f5;       /* Dark Backgrounds Text */
-  
-  /* INTERACTIVE ELEMENTS */
-  --btn-primary: #da7756;        /* Primary Buttons */
-  --btn-primary-hover: #c76646;  /* Primary Hover */
-  --btn-secondary: #da7756;      /* Secondary Buttons */
-  --link-color: #da7756;         /* Links */
-  --link-hover: #c76646;         /* Link Hover */
-  
-  /* CLAUDE ACCENT COLORS */
-  --gold-primary: #da7756;       /* Primary Accent */
-  --gold-bright: #e88968;        /* Secondary Accent */
-  --gold-subtle: #f5e6e0;        /* Accent Light */
-  
-  /* Legacy compatibility */
-  --bg: var(--bg-main);
-  --surface: var(--surface-primary);
-  --text: var(--text-primary);
-  --accent: var(--btn-secondary);
-  --accent-2: var(--text-muted);
-  --border: rgba(212, 175, 55, 0.2);
-  --error: #dc2626;
-}
+/* Note: Color variables are now defined in ./styles/variables.css with Claude theme */
 
 /* ▼ CLAUDE DARK MODE ▼ */
 .dark {
@@ -70,7 +30,7 @@
   --text-dark-bg: #1a1a1a;
   
   --gold-primary: #e88968;
-  --gold-bright: #da7756;
+      --gold-bright: var(--color-accent);
   --gold-subtle: #3a2925;
   
   --bg: var(--bg-main);
@@ -434,40 +394,40 @@ body, p, .body-text {
 .kintsugi-rotate-2 { transform: rotate(-0.3deg); }
 .kintsugi-rotate-3 { transform: rotate(0.8deg); }
 
-.kintsugi-text-gold { color: var(--gold-primary); }
-.kintsugi-bg-gold { background: rgba(216, 142, 111, 0.1); }
+.kintsugi-text-gold { color: var(--color-accent); }
+.kintsugi-bg-gold { background: rgba(189, 93, 58, 0.1); }
 
 /* ▼ CONSISTENT PAGE LAYOUTS ▼ */
 
 /* Main page background */
 body {
-  background-color: var(--bg-main);
-  color: var(--text-secondary);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
   font-family: 'Crimson Text', serif;
 }
 
 /* Section backgrounds */
 section {
-  background-color: var(--bg-section);
+  background-color: var(--color-bg);
 }
 
 section:nth-child(even) {
-  background-color: var(--bg-dark-section);
+  background-color: var(--color-surface);
 }
 
 /* Card styles */
 .card, .surface {
-  background-color: var(--surface-primary);
+  background-color: var(--color-surface);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(216, 142, 111, 0.1);
-  border: 1px solid rgba(216, 142, 111, 0.1);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
 }
 
 /* Code blocks */
 pre, code, .code-block {
-  background-color: var(--surface-code);
-  color: var(--text-dark-bg);
+  background-color: var(--color-surface-secondary);
+  color: var(--color-text-primary);
   padding: 1rem;
   border-radius: 8px;
   font-family: 'Monaco', 'Consolas', monospace;
@@ -494,32 +454,32 @@ pre, code, .code-block {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--surface-primary);
+  background: var(--color-surface);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, var(--gold-primary), var(--gold-bright));
+  background: linear-gradient(45deg, var(--color-accent), var(--color-accent-light));
   border-radius: 10px;
-  border: 2px solid var(--surface-primary);
+  border: 2px solid var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, var(--gold-bright), var(--gold-primary));
-  box-shadow: 0 0 10px rgba(216, 142, 111, 0.3);
+  background: linear-gradient(45deg, var(--color-accent-light), var(--color-accent));
+  box-shadow: 0 0 10px rgba(189, 93, 58, 0.3);
 }
 
 /* Selection styling */
 ::selection {
-  background: rgba(216, 142, 111, 0.3);
-  color: var(--text-primary);
+  background: rgba(189, 93, 58, 0.3);
+  color: var(--color-text-primary);
 }
 
 /* Focus states */
 .kintsugi-focus:focus {
-  outline: 2px solid var(--gold-primary);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
-  box-shadow: 0 0 10px rgba(216, 142, 111, 0.3);
+  box-shadow: 0 0 10px rgba(189, 93, 58, 0.3);
 }
 
 /* ▼ DYNAMIC KINTSUGI EFFECTS ▼ */
@@ -604,7 +564,7 @@ pre, code, .code-block {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: radial-gradient(circle, var(--gold-bright), transparent);
+  background: radial-gradient(circle, var(--color-accent-light), transparent);
   border-radius: 50%;
   pointer-events: none;
   animation: dust-settle 3s ease-out forwards;
@@ -625,7 +585,7 @@ pre, code, .code-block {
 .radial-crack {
   position: absolute;
   pointer-events: none;
-  stroke: var(--gold-primary);
+  stroke: var(--color-accent);
   stroke-width: 2;
   fill: none;
   opacity: 0;
@@ -661,65 +621,4 @@ pre, code, .code-block {
   }
 }
 
-/* ===== CLAUDE THEME OVERRIDES FOR 60-30-10 BALANCE ===== */
-[data-theme="claude"] {
-  /* Override legacy colors with Claude palette */
-  --bg-main: var(--color-bg);              /* Pampas background (60%) */
-  --bg-section: var(--color-surface-tertiary); /* Tinted Pampas for sections */
-  --surface-primary: var(--color-surface);     /* White cards on Pampas (30%) */
-  --surface-elevated: var(--color-surface-secondary); /* Cloudy surfaces */
-  
-  --text-primary: var(--color-text-primary);   /* Night-Charcoal text */
-  --text-secondary: var(--color-text-secondary); /* Enhanced contrast */
-  --text-muted: var(--color-text-tertiary);    /* Muted text */
-  
-  --btn-primary: var(--color-cta);             /* CTA Orange buttons (10%) */
-  --btn-primary-hover: var(--color-cta-hover); /* Deep Coral hover */
-  --link-color: var(--color-primary);          /* Crail links */
-  --link-hover: var(--color-primary-dark);     /* Dark Crail hover */
-  
-  --gold-primary: var(--color-primary);        /* Crail accent */
-  --gold-bright: var(--color-primary-light);   /* Light Crail */
-  --gold-subtle: var(--color-primary-50);      /* Subtle Crail bg */
-}
-
-/* Enhanced section styling for 60-30-10 balance */
-[data-theme="claude"] .section {
-  background-color: var(--color-bg); /* Pampas dominance */
-}
-
-[data-theme="claude"] .section:nth-child(even) {
-  background-color: var(--color-surface-tertiary); /* Subtle variety */
-}
-
-/* Ensure proper card contrast on Pampas */
-[data-theme="claude"] .card,
-[data-theme="claude"] .surface,
-[data-theme="claude"] .project-card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  box-shadow: var(--shadow-sm);
-}
-
-/* Restrict accent colors to interactive elements only */
-[data-theme="claude"] .btn-primary,
-[data-theme="claude"] .kintsugi-btn {
-  background-color: var(--color-cta);
-  color: var(--color-text-inverse);
-}
-
-[data-theme="claude"] .btn-primary:hover,
-[data-theme="claude"] .kintsugi-btn:hover {
-  background-color: var(--color-cta-hover);
-}
-
-/* Links use Crail, not CTA orange */
-[data-theme="claude"] a,
-[data-theme="claude"] .link-primary {
-  color: var(--color-primary);
-}
-
-[data-theme="claude"] a:hover,
-[data-theme="claude"] .link-primary:hover {
-  color: var(--color-primary-dark);
-}
+/* Note: Claude theme styles are handled by ./styles/variables.css */

@@ -10,7 +10,7 @@ const technologies = [
     level: 95,
     details: 'Python, SQL, Scala',
     icon: Code,
-    color: '#0066cc',
+    color: 'var(--color-accent)',
     position: 'row1-col1'
   },
   { 
@@ -18,7 +18,7 @@ const technologies = [
     level: 90,
     details: 'AWS, GCP, Azure',
     icon: Cloud,
-    color: '#ff6600',
+    color: 'var(--color-cta)',
     position: 'row1-col2'
   },
   { 
@@ -26,7 +26,7 @@ const technologies = [
     level: 88,
     details: 'Spark, Kafka, Airflow',
     icon: Zap,
-    color: '#059669',
+    color: 'var(--color-accent-dark)',
     position: 'row1-col3'
   },
   { 
@@ -34,7 +34,7 @@ const technologies = [
     level: 92,
     details: 'PostgreSQL, MongoDB, Redis',
     icon: Database,
-    color: '#008844',
+    color: 'var(--color-accent)',
     position: 'row1-col4'
   },
   // Row 2 (Bottom 4)
@@ -43,7 +43,7 @@ const technologies = [
     level: 87,
     details: 'TensorFlow, PyTorch, HF',
     icon: Cog,
-    color: '#6c5dac',
+    color: 'var(--color-accent-dark)',
     position: 'row2-col1'
   },
   { 
@@ -51,7 +51,7 @@ const technologies = [
     level: 85,
     details: 'Docker, Kubernetes',
     icon: Settings,
-    color: '#dc2626',
+    color: 'var(--color-cta)',
     position: 'row2-col2'
   },
   { 
@@ -59,7 +59,7 @@ const technologies = [
     level: 89,
     details: 'dbt, Fivetran, Apache Beam',
     icon: BarChart3,
-    color: '#0066cc',
+    color: 'var(--color-accent)',
     position: 'row2-col3'
   },
   { 
@@ -67,7 +67,7 @@ const technologies = [
     level: 86,
     details: 'Tableau, Power BI, Jupyter',
     icon: PieChart,
-    color: '#7c3aed',
+    color: 'var(--color-accent-dark)',
     position: 'row2-col4'
   }
 ];

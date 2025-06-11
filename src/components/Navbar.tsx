@@ -48,6 +48,22 @@ const Navbar = () => {
       const windowHeight = window.innerHeight;
       const progress = (scrollY / (documentHeight - windowHeight)) * 100;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
+    };
+
+    // Set initial active section
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateSectionPositions);
+    };
+  }, []); // Remove sectionPositions dependency to prevent infinite loop
+
+  // Separate effect for active section detection
+  useEffect(() => {
+    const handleActiveSection = () => {
+      const scrollY = window.scrollY;
       
       // Determine active section using cached positions
       let currentActiveSection = 'home';
@@ -67,15 +83,13 @@ const Navbar = () => {
       setActiveSection(currentActiveSection);
     };
 
-    // Set initial active section
-    handleScroll();
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', updateSectionPositions);
-    };
-  }, [sectionPositions]);
+    // Only set up scroll listener if we have cached positions
+    if (Object.keys(sectionPositions).length > 0) {
+      handleActiveSection();
+      window.addEventListener('scroll', handleActiveSection);
+      return () => window.removeEventListener('scroll', handleActiveSection);
+    }
+  }, [sectionPositions]); // This effect depends on sectionPositions but doesn't modify it
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -162,7 +176,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             {/* Available status badge */}
             <motion.div
-              className="bg-[#da7756] text-white text-xs px-3 py-1 rounded-full shadow-lg"
+              className="bg-[color:var(--color-accent)] text-white text-xs px-3 py-1 rounded-full shadow-lg"
               animate={{ y: [0, -2, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >

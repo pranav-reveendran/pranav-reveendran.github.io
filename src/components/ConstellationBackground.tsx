@@ -38,8 +38,8 @@ const ConstellationBackground: React.FC = () => {
 
   // Claude color palette
   const colors = {
-    particle: '#da7756', // Claude primary accent
-    connection: '#da7756',
+    particle: 'var(--color-accent)', // Claude primary accent
+    connection: 'var(--color-accent)',
     glow: '#e88968', // Claude secondary accent
     ripple: '#f5e6e0', // Claude accent light
   };

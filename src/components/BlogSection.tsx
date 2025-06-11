@@ -137,6 +137,16 @@ const BlogSection = () => {
                     : "hover:bg-accent/10 text-text border-border"
                 )}
                 onClick={() => setSelectedCategory(category)}
+                role="button"
+                aria-pressed={selectedCategory === category}
+                aria-label={`Filter by ${category} category`}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedCategory(category);
+                  }
+                }}
               >
                 {category}
               </Badge>
@@ -212,6 +222,7 @@ const BlogSection = () => {
                   onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                   className="text-accent hover:text-accent/80"
                   href="#"
+                  aria-label="Go to previous page"
                 />
               )}
             </PaginationItem>
@@ -224,6 +235,8 @@ const BlogSection = () => {
                 )}
                 href="#"
                 onClick={() => setCurrentPage(1)}
+                aria-label="Go to page 1"
+                aria-current={currentPage === 1 ? "page" : undefined}
               >
                 1
               </PaginationLink>
@@ -242,6 +255,7 @@ const BlogSection = () => {
                   onClick={() => setCurrentPage(prev => prev + 1)}
                   className="text-accent hover:text-accent/80"
                   href="#"
+                  aria-label="Go to next page"
                 />
               )}
               </PaginationItem>

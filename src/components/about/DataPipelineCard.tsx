@@ -28,7 +28,7 @@ const DataPipelineCard: React.FC<DataPipelineCardProps> = ({ className = '' }) =
       sampleData: {
         raw: '{"user":"john_doe", "timestamp":"2025-05-19T14:23:45", "source":"mobile"}'
       },
-      color: '#0066cc',
+      color: 'var(--color-accent)',
       pattern: 'diagonal'
     },
     { 
@@ -39,7 +39,7 @@ const DataPipelineCard: React.FC<DataPipelineCardProps> = ({ className = '' }) =
       sampleData: {
         transformed: '{"user_id":12345, "time_epoch":1716112425, "device_type":"mobile"}'
       },
-      color: '#008844',
+      color: 'var(--color-accent-dark)',
       pattern: 'dots'
     },
     { 
@@ -50,7 +50,7 @@ const DataPipelineCard: React.FC<DataPipelineCardProps> = ({ className = '' }) =
       sampleData: {
         loaded: '{"dimension":"device_type", "metrics":{"active_users":1285}, "period":"2025-05"}'
       },
-      color: '#ff6600',
+      color: 'var(--color-cta)',
       pattern: 'waves'
     }
   ];
@@ -119,15 +119,15 @@ const DataPipelineCard: React.FC<DataPipelineCardProps> = ({ className = '' }) =
         className,
       )}
     >
-      {/* Elegant header with blue accent */}
-      <div className="relative p-6 pb-4 bg-gradient-to-br from-[#e6f2ff]/20 to-white border-b border-[#e5e5e5]">
-        {/* Blue top stripe */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0066cc] to-[#004499]" />
+      {/* Elegant header with accent colors */}
+      <div className="relative p-6 pb-4 bg-gradient-to-br from-[color:var(--color-accent-light)]/20 to-white border-b border-[#e5e5e5]">
+        {/* Accent color top stripe */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-[color:var(--color-accent)]" />
         
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <h3 className="text-2xl font-bold text-[#1a1a1a]">My Data Pipeline Approach</h3>
-            <div className="w-3 h-3 bg-[#0066cc] rounded-full animate-pulse" />
+            <div className="w-3 h-3 bg-[color:var(--color-accent)] rounded-full animate-pulse" />
           </div>
           <p className="text-[#6a6a6a] text-sm leading-relaxed max-w-sm">
             Interactive ETL demonstration with real-time data flow
@@ -138,7 +138,7 @@ const DataPipelineCard: React.FC<DataPipelineCardProps> = ({ className = '' }) =
         <div className="flex justify-center pt-6 pb-2">
           <motion.button
             onClick={animateDataFlow}
-            className="group flex items-center gap-3 px-6 py-3 bg-[#0066cc] text-white rounded-lg text-base font-semibold hover:bg-[#004499] transition-colors border-2 border-[#0066cc] hover:border-[#004499] shadow-lg hover:shadow-xl"
+            className="group flex items-center gap-3 px-6 py-3 bg-[color:var(--color-cta)] text-white rounded-lg text-base font-semibold hover:bg-[color:var(--color-cta-hover)] transition-colors border-2 border-[color:var(--color-cta)] hover:border-[color:var(--color-cta-hover)] shadow-lg hover:shadow-xl"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
             disabled={isAnimating}
@@ -151,13 +151,13 @@ const DataPipelineCard: React.FC<DataPipelineCardProps> = ({ className = '' }) =
       
       <div className="p-6">
         <div className="space-y-6 relative">
-          {/* Enhanced connecting line with gradient */}
-          <div className="absolute left-8 top-8 h-[calc(100%-64px)] w-1 bg-gradient-to-b from-[#0066cc] via-[#008844] to-[#ff6600] rounded-full z-0 opacity-60" />
+          {/* Enhanced connecting line with accent colors */}
+          <div className="absolute left-8 top-8 h-[calc(100%-64px)] w-1 bg-[color:var(--color-accent)] rounded-full z-0 opacity-60" />
           
           {/* Animated data packet with glow */}
           {isAnimating && activeStep !== null && (
             <motion.div 
-              className="absolute left-[26px] w-6 h-6 rounded-full bg-gradient-to-r from-[#0066cc] to-[#004499] shadow-lg z-20 border-2 border-white"
+              className="absolute left-[26px] w-6 h-6 rounded-full bg-[color:var(--color-accent)] shadow-lg z-20 border-2 border-white"
               initial={{ y: 8, scale: 0.8 }}
               animate={{ 
                 y: activeStep === 0 ? 8 : 
@@ -193,7 +193,7 @@ const DataPipelineCard: React.FC<DataPipelineCardProps> = ({ className = '' }) =
                   "relative p-6 rounded-xl border-2 transition-all duration-300 bg-white overflow-hidden min-h-[140px]",
                   activeStep === index 
                     ? "shadow-lg" 
-                    : "border-[#e5e5e5] hover:border-[#0066cc]/30"
+                    : "border-[#e5e5e5] hover:border-[color:var(--color-accent)]/30"
                 )}
                 style={{
                   borderColor: activeStep === index ? step.color : undefined,
@@ -346,14 +346,14 @@ const DataPipelineCard: React.FC<DataPipelineCardProps> = ({ className = '' }) =
           <div className={cn(
             "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all duration-300 border-2",
             isAnimating 
-              ? "bg-[#0066cc]/10 text-[#0066cc] border-[#0066cc]/20" 
+              ? "bg-[color:var(--color-accent)]/10 text-[color:var(--color-accent)] border-[color:var(--color-accent)]/20" 
               : "bg-[#f5f5f5] text-[#6a6a6a] border-[#e5e5e5]"
           )}>
             {isAnimating && (
               <div className="flex gap-1">
-                <div className="w-2 h-2 rounded-full bg-[#0066cc] animate-bounce" />
-                <div className="w-2 h-2 rounded-full bg-[#008844] animate-bounce" style={{ animationDelay: '0.1s' }} />
-                <div className="w-2 h-2 rounded-full bg-[#ff6600] animate-bounce" style={{ animationDelay: '0.2s' }} />
+                <div className="w-2 h-2 rounded-full bg-[color:var(--color-accent)] animate-bounce" />
+                <div className="w-2 h-2 rounded-full bg-[color:var(--color-accent-dark)] animate-bounce" style={{ animationDelay: '0.1s' }} />
+                <div className="w-2 h-2 rounded-full bg-[color:var(--color-cta)] animate-bounce" style={{ animationDelay: '0.2s' }} />
               </div>
             )}
             <span className="font-medium">
@@ -365,9 +365,9 @@ const DataPipelineCard: React.FC<DataPipelineCardProps> = ({ className = '' }) =
         </motion.div>
       </div>
       
-      {/* Subtle background decoration with new palette */}
-      <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-[#0066cc]/5 to-[#004499]/10 blur-2xl pointer-events-none" />
-      <div className="absolute -bottom-10 -left-10 w-24 h-24 rounded-full bg-gradient-to-br from-[#e6f2ff]/20 to-[#0066cc]/5 blur-xl pointer-events-none" />
+      {/* Subtle background decoration with Claude theme */}
+      <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-[color:var(--color-accent-light)]/20 blur-2xl pointer-events-none" />
+      <div className="absolute -bottom-10 -left-10 w-24 h-24 rounded-full bg-[color:var(--color-accent)]/10 blur-xl pointer-events-none" />
     </motion.div>
   );
 };
