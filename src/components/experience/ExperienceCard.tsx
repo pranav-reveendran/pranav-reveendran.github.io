@@ -4,14 +4,14 @@ import { Calendar, MapPin, Building2, Star } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
-// Company logos mapping - using reliable sources
+// Company logos mapping - using local sources to avoid third-party cookies
 const companyLogos = {
-  "Amazon": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/100px-Amazon_logo.svg.png",
-  "San José State University": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/San_Jose_State_Spartans_logo.svg/100px-San_Jose_State_Spartans_logo.svg.png",
+  "Amazon": "/amazon-logo.png",
+  "San José State University": "/sjsu-logo.png",
   "Spartan Analytics": "https://cdn-icons-png.flaticon.com/128/3281/3281289.png",
   "Epsilon": "https://cdn.worldvectorlogo.com/logos/epsilon-1.svg",
   "Codenex Solutions LLP": "https://cdn-icons-png.flaticon.com/128/2920/2920277.png",
-  "EY": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/EY_logo_2019.svg/100px-EY_logo_2019.svg.png"
+  "EY": "/ey-logo.png"
 };
 
 interface ExperienceCardProps {

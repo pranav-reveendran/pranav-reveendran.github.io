@@ -7,7 +7,7 @@ import ReactablePhoto from './hero/ReactablePhoto';
 import { useMotionSafe } from '@/hooks/use-motion-safe';
 import { useTechHighlight } from '@/context/TechHighlightContext';
 import HeroHeading from './hero/HeroHeading';
-import DataEngineeringCLI from './hero/DataEngineeringCLI';
+
 import HeroDescription from './hero/HeroDescription';
 import HeroMetrics from './hero/HeroMetrics';
 import HeroButtons from './hero/HeroButtons';
@@ -121,11 +121,11 @@ const KintsugiCrackPattern: React.FC = () => {
         />
         
         <defs>
-          <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="var(--color-accent-light)" stopOpacity="0.3" />
-            <stop offset="50%" stopColor="var(--color-accent)" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="var(--color-accent-light)" stopOpacity="0.3" />
-          </radialGradient>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#d4af37" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="#ffd700" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#d4af37" stopOpacity="0.3" />
+          </linearGradient>
         </defs>
       </svg>
     </div>
@@ -157,7 +157,7 @@ const HeroSection: React.FC = () => {
   }
 
   return (
-          <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[color:var(--color-bg)] via-[color:var(--color-surface)] to-[color:var(--color-surface)] flex items-center justify-center">
+    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#ffffff] via-[#fafaf9] to-[#f5f4f2] flex items-center justify-center">
       {/* Kintsugi background pattern */}
       <KintsugiCrackPattern />
       
@@ -206,19 +206,19 @@ const HeroSection: React.FC = () => {
                 style={{ minHeight: '180px' }}
               >
                 <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">4+</div>
+                  <div className="text-2xl font-bold text-[#0066cc] mb-1">4+</div>
                   <div className="text-sm text-gray-600">Years building production ML pipelines</div>
                 </div>
                 <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">100M+</div>
+                  <div className="text-2xl font-bold text-[#0066cc] mb-1">100M+</div>
                   <div className="text-sm text-gray-600">Daily requests served</div>
                 </div>
                 <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">60%</div>
+                  <div className="text-2xl font-bold text-[#0066cc] mb-1">60%</div>
                   <div className="text-sm text-gray-600">Cost reduction achieved</div>
                 </div>
                 <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">50+</div>
+                  <div className="text-2xl font-bold text-[#0066cc] mb-1">50+</div>
                   <div className="text-sm text-gray-600">ML models in production</div>
                 </div>
               </motion.div>
@@ -284,11 +284,11 @@ const HeroSection: React.FC = () => {
                   <div className="text-sm font-medium text-gray-700 mb-3">Real-time Metrics</div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">Processed rows today:</span>
-                    <span className="font-mono text-[color:var(--color-accent)]">47,047,912</span>
+                    <span className="font-mono text-[#0066cc]">47,047,912</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">Pipeline latency:</span>
-                    <span className="font-mono text-[color:var(--color-accent)]">23ms 📈</span>
+                    <span className="font-mono text-[#0066cc]">23ms 📈</span>
                   </div>
                 </div>
 
@@ -315,32 +315,24 @@ const HeroSection: React.FC = () => {
                     <span>Migrated legacy systems, reducing costs 40%</span>
                   </div>
                 </motion.div>
+
+                {/* Action Buttons - Right after the achievement bullets */}
+                <motion.div 
+                  className="mt-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.4, duration: 0.6 }}
+                >
+                  <HeroButtons />
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>
 
-          {/* Action Buttons */}
-          <motion.div 
-            className="flex justify-center mt-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.6 }}
-          >
-            <HeroButtons />
-          </motion.div>
+
         </div>
 
-        {/* CLI Terminal section - positioned after photo */}
-        <motion.div 
-          className="mt-16 flex justify-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
-        >
-          <div className="w-full max-w-2xl">
-            <DataEngineeringCLI show={showNetworkParticles} />
-          </div>
-        </motion.div>
+
       </div>
 
       {/* Bottom section divider with Kintsugi aesthetics */}

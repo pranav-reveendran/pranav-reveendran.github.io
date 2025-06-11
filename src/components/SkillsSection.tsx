@@ -183,8 +183,9 @@ const SkillsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4" id="skills-heading" style={{ color: materialColors.onSurface }}>
-            ✨ TECHNICAL EXPERTISE ✨
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" id="skills-heading">
+            <span className="text-[#1a1a1a]">Technical</span>{" "}
+            <span className="text-[color:var(--color-accent-dark)]">Expertise</span>
           </h2>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: materialColors.onSurfaceLight }}>
             A comprehensive overview of my technical skills, ongoing learning goals, and expertise areas

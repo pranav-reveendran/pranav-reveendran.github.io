@@ -15,14 +15,14 @@ import { Progress } from '@/components/ui/progress';
 import { CompactExperienceCard } from '@/components/experience/ExperienceCard';
 import { CareerProgress } from '@/components/experience/CareerProgress';
 
-// Company logos mapping - using reliable sources
+// Company logos mapping - using local sources to avoid third-party cookies
 const companyLogos = {
-  "Amazon": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/100px-Amazon_logo.svg.png",
-  "San José State University": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/San_Jose_State_Spartans_logo.svg/100px-San_Jose_State_Spartans_logo.svg.png",
+  "Amazon": "/amazon-logo.png",
+  "San José State University": "/sjsu-logo.png",
   "Spartan Analytics": "https://cdn-icons-png.flaticon.com/128/3281/3281289.png",
   "Epsilon": "https://cdn.worldvectorlogo.com/logos/epsilon-1.svg",
   "Codenex Solutions LLP": "https://cdn-icons-png.flaticon.com/128/2920/2920277.png",
-  "EY": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/EY_logo_2019.svg/100px-EY_logo_2019.svg.png"
+  "EY": "/ey-logo.png"
 };
 
 // Removed AnimatedCounter - moved to CareerProgress component
@@ -216,20 +216,20 @@ const ExperienceSection = () => {
     >
       <Card className={`relative overflow-hidden backdrop-blur-sm transition-all duration-300 flex flex-col ${
         isActive 
-                  ? 'bg-white ring-2 ring-[color:var(--color-accent)]/40 shadow-2xl shadow-[color:var(--color-accent)]/10 border-[color:var(--color-accent)]/60 scale-[1.02]'
-        : 'bg-white border-[#e5e5e5] hover:border-[color:var(--color-accent)]/30 hover:shadow-xl hover:shadow-[color:var(--color-accent)]/5 hover:scale-[1.01]'
+          ? 'bg-white ring-2 ring-[#0066cc]/40 shadow-2xl shadow-[#0066cc]/10 border-[#0066cc]/60 scale-[1.02]' 
+          : 'bg-white border-[#e5e5e5] hover:border-[#0066cc]/30 hover:shadow-xl hover:shadow-[#0066cc]/5 hover:scale-[1.01]'
       } border-2 rounded-2xl cursor-pointer`} style={{ height: '300px', minHeight: '300px', maxHeight: '300px' }}>
         
         {/* Colorblind-friendly header accent */}
         <div className={`h-1 bg-gradient-to-r ${
           isActive 
-                        ? 'from-[color:var(--color-accent)] via-[color:var(--color-accent-dark)] to-[color:var(--color-accent)]'
-            : 'from-[color:var(--color-accent)] via-[color:var(--color-accent-dark)] to-[color:var(--color-accent)]'
+            ? 'from-[#0066cc] via-[#004499] to-[#0066cc]' 
+            : 'from-[#0066cc] via-[#004499] to-[#0066cc]'
         }`} />
         
         {/* Pattern indicator for accessibility */}
         <div className="absolute top-4 right-4 flex gap-1">
-                        <div className="w-2 h-2 rounded-full bg-[color:var(--color-accent)]" />
+          <div className="w-2 h-2 rounded-full bg-[#0066cc]" />
           <div className="w-1 h-2 rounded-full bg-[#008844]" />
         </div>
         
@@ -267,9 +267,9 @@ const ExperienceSection = () => {
               </div>
             </div>
             
-            <h3 className="text-lg font-bold text-cta-900 line-clamp-2 leading-snug font-heading">
+            <h4 className="text-lg font-bold text-cta-900 line-clamp-2 leading-snug font-heading">
               {experience.title}
-            </h3>
+            </h4>
           </div>
 
 
@@ -388,7 +388,7 @@ const ExperienceSection = () => {
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-cta-100 to-cta-200/60 flex items-center justify-center shadow-md">
                 <Target className="w-4 h-4 text-cta-600" />
               </div>
-              <h3 className="text-lg font-bold text-cta-900 font-heading">Key Responsibilities</h3>
+              <h4 className="text-lg font-bold text-cta-900 font-heading">Key Responsibilities</h4>
             </div>
             <p className="text-sm text-cta-700 font-body">Detailed overview of work performed and achievements in this role</p>
           </div>
@@ -467,20 +467,20 @@ const ExperienceSection = () => {
         >
           {/* Title Section */}
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-4" id="experience-heading">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4" id="experience-heading">
               <span className="text-[color:var(--color-accent)] relative">
-                EXPERIENCE
+                Experience
                 <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[color:var(--color-accent)] to-[color:var(--color-accent-dark)] rounded-full opacity-60" />
               </span>
             </h2>
             
             {/* Professional Experience Badge */}
-            <div className="inline-flex items-center gap-3 mb-4 px-6 py-3 rounded-full border-2 border-[color:var(--color-accent)]/30 bg-[color:var(--color-accent)]/10 backdrop-blur-sm">
-              <Briefcase className="w-5 h-5 text-[color:var(--color-accent)]" />
-              <span className="text-sm font-semibold text-[color:var(--color-accent)] uppercase tracking-wider">
+            <div className="inline-flex items-center gap-3 mb-4 px-6 py-3 rounded-full border-2 border-[#0066cc]/30 bg-[#0066cc]/10 backdrop-blur-sm">
+              <Briefcase className="w-5 h-5 text-[#0066cc]" />
+              <span className="text-sm font-semibold text-[#0066cc] uppercase tracking-wider">
                 4+ YOE PROFESSIONAL EXPERIENCE
               </span>
-              <Star className="w-4 h-4 text-[color:var(--color-accent)]" />
+              <Star className="w-4 h-4 text-[#0066cc]" />
             </div>
             
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -489,9 +489,9 @@ const ExperienceSection = () => {
           </div>
 
           {/* Career Progress - Compact */}
-                      <div className="bg-gradient-to-br from-blue-50 to-indigo-50/30 border border-[color:var(--color-accent)]/20 rounded-2xl p-6 mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <TrendingUp className="w-6 h-6 text-[color:var(--color-accent)]" />
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50/30 border border-[#0066cc]/20 rounded-2xl p-6 mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <TrendingUp className="w-6 h-6 text-[#0066cc]" />
               <div>
                 <h3 className="text-lg font-bold text-gray-900">Career Progress</h3>
                 <p className="text-sm text-gray-600">Professional growth metrics</p>
@@ -501,7 +501,7 @@ const ExperienceSection = () => {
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200/60 flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-[color:var(--color-accent)]" />
+                  <Calendar className="w-6 h-6 text-[#0066cc]" />
                 </div>
                 <div className="text-2xl font-bold text-gray-800 mb-1">4+</div>
                 <p className="text-sm text-gray-600 font-medium">Years Experience</p>
@@ -528,7 +528,7 @@ const ExperienceSection = () => {
           {/* Search & Filter Section */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-6">
             <div className="flex items-center gap-3 mb-4">
-                              <Search className="w-5 h-5 text-[color:var(--color-accent)]" />
+              <Search className="w-5 h-5 text-[#0066cc]" />
               <h3 className="text-lg font-semibold text-gray-900">Search & Filter Experiences</h3>
             </div>
             
@@ -539,11 +539,11 @@ const ExperienceSection = () => {
                   placeholder="Search by role, company, or skills..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 text-base border-gray-200 focus:border-[color:var(--color-accent)] bg-white"
+                  className="pl-10 h-12 text-base border-gray-200 focus:border-[#0066cc] bg-white"
                 />
               </div>
               <Select value={selectedCompany} onValueChange={setSelectedCompany}>
-                <SelectTrigger className="w-full sm:w-56 h-12 border-gray-200">
+                <SelectTrigger className="w-full sm:w-56 h-12 border-gray-200" aria-label="Filter by company">
                   <SelectValue placeholder="All Companies" />
                 </SelectTrigger>
                 <SelectContent>
@@ -556,7 +556,7 @@ const ExperienceSection = () => {
                 </SelectContent>
               </Select>
               <Select value={selectedType} onValueChange={setSelectedType}>
-                <SelectTrigger className="w-full sm:w-44 h-12 border-gray-200">
+                <SelectTrigger className="w-full sm:w-44 h-12 border-gray-200" aria-label="Filter by type">
                   <SelectValue placeholder="All Types" />
                 </SelectTrigger>
                 <SelectContent>
@@ -582,7 +582,7 @@ const ExperienceSection = () => {
                     setSelectedCompany('all');
                     setSelectedType('all');
                   }}
-                  className="text-[color:var(--color-accent)] hover:text-[color:var(--color-accent-dark)] h-8 px-3 text-xs"
+                  className="text-[#0066cc] hover:text-[#004499] h-8 px-3 text-xs"
                 >
                   Clear filters
                 </Button>
@@ -596,23 +596,23 @@ const ExperienceSection = () => {
           <div className="h-full grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left Panel - Experience Timeline */}
             <div className="h-full">
-              <div className="relative h-full rounded-2xl border-2 border-[color:var(--color-accent)]/20 bg-white backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="relative h-full rounded-2xl border-2 border-[#0066cc]/20 bg-white backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 {/* Blue top stripe for colorblind accessibility */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[color:var(--color-accent)] to-[color:var(--color-accent-dark)]" />
-                <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-accent-light)]/10 via-transparent to-[color:var(--color-accent-light)]/10" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0066cc] to-[#004499]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#e6f2ff]/10 via-transparent to-[#e6f2ff]/10" />
                 
                 {/* Panel Header */}
-                <div className="relative border-b border-[color:var(--color-accent)]/20" style={{ padding: '16px' }}>
+                <div className="relative border-b border-[#0066cc]/20" style={{ padding: '16px' }}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-[color:var(--color-accent-light)]/30 flex items-center justify-center border border-[color:var(--color-accent)]/20">
-                        <Building2 className="w-4 h-4 text-[color:var(--color-accent)]" />
+                      <div className="w-8 h-8 rounded-lg bg-[#e6f2ff] flex items-center justify-center border border-[#0066cc]/20">
+                        <Building2 className="w-4 h-4 text-[#0066cc]" />
                       </div>
                       <h3 className="font-semibold text-[#1a1a1a] font-heading text-lg">
                         Experience Timeline
                       </h3>
                     </div>
-                    <div className="text-xs bg-[color:var(--color-accent)] text-white px-2 py-1 rounded-full font-medium">
+                    <div className="text-xs bg-[#0066cc] text-white px-2 py-1 rounded-full font-medium">
                       {filteredExperiences.length}
                     </div>
                   </div>
@@ -621,7 +621,7 @@ const ExperienceSection = () => {
                 {/* Timeline Container - Shows exactly 1.5 items */}
                 <div 
                   ref={cardsRef}
-                  className="relative overflow-y-auto flex flex-col scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-[color:var(--color-accent)]/30 hover:scrollbar-thumb-[color:var(--color-accent)]/50"
+                  className="relative overflow-y-auto flex flex-col scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-[#0066cc]/30 hover:scrollbar-thumb-[#0066cc]/50"
                   style={{ 
                     height: 'calc(100% - 80px)',
                     maxHeight: '910px',
@@ -651,7 +651,7 @@ const ExperienceSection = () => {
                       transition={{ duration: 0.5 }}
                     >
                       <div className="space-y-6">
-                        <Filter className="w-16 h-16 text-[color:var(--color-accent)]/50 mx-auto" />
+                        <Filter className="w-16 h-16 text-[#0066cc]/50 mx-auto" />
                         <div>
                           <p className="text-[#1a1a1a] text-lg mb-2 font-heading">No experiences match your search</p>
                           <p className="text-[#6a6a6a] text-sm font-body">Try adjusting your filters or search terms</p>
@@ -667,7 +667,7 @@ const ExperienceSection = () => {
                               setSelectedCompany('all');
                               setSelectedType('all');
                             }}
-                            className="text-[color:var(--color-accent)] hover:text-[color:var(--color-accent-dark)] hover:bg-[color:var(--color-accent-light)]/30 font-medium"
+                            className="text-[#0066cc] hover:text-[#004499] hover:bg-[#e6f2ff] font-medium"
                           >
                             Clear all filters
                           </Button>
@@ -678,12 +678,12 @@ const ExperienceSection = () => {
 
                   {/* Scroll indicator at bottom */}
                   {filteredExperiences.length > 2 && (
-                    <div className="sticky bottom-0 text-center py-3 bg-gradient-to-t from-white via-white/95 to-transparent border-t border-[color:var(--color-accent)]/10">
-                      <div className="text-xs text-[color:var(--color-accent)] font-medium flex items-center justify-center gap-2">
+                    <div className="sticky bottom-0 text-center py-3 bg-gradient-to-t from-white via-white/95 to-transparent border-t border-[#0066cc]/10">
+                      <div className="text-xs text-[#0066cc] font-medium flex items-center justify-center gap-2">
                         <div className="flex space-x-1">
-                          <div className="w-1 h-1 rounded-full bg-[color:var(--color-accent)] animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                          <div className="w-1 h-1 rounded-full bg-[color:var(--color-accent)] animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                          <div className="w-1 h-1 rounded-full bg-[color:var(--color-accent)] animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                          <div className="w-1 h-1 rounded-full bg-[#0066cc] animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                          <div className="w-1 h-1 rounded-full bg-[#0066cc] animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                          <div className="w-1 h-1 rounded-full bg-[#0066cc] animate-bounce" style={{ animationDelay: '300ms' }}></div>
                         </div>
                         Scroll for more experiences
                       </div>
@@ -695,16 +695,16 @@ const ExperienceSection = () => {
 
             {/* Right Panel - Experience Details */}
             <div className="h-full">
-              <div className="relative h-full rounded-2xl border-2 border-[color:var(--color-accent)]/20 bg-white backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="relative h-full rounded-2xl border-2 border-[#0066cc]/20 bg-white backdrop-blur-sm overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 {/* Green top stripe for colorblind accessibility */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#008844] to-[#006622]" />
-                <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-accent-light)]/5 via-transparent to-[color:var(--color-accent-light)]/5" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#e6f2ff]/5 via-transparent to-[#e6f2ff]/5" />
                 
                 {/* Panel Header */}
-                <div className="relative border-b border-[color:var(--color-accent)]/20" style={{ padding: '16px' }}>
+                <div className="relative border-b border-[#0066cc]/20" style={{ padding: '16px' }}>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[color:var(--color-accent-light)]/30 flex items-center justify-center border border-[color:var(--color-accent)]/20">
-                      <Trophy className="w-4 h-4 text-[color:var(--color-accent)]" />
+                    <div className="w-8 h-8 rounded-lg bg-[#e6f2ff] flex items-center justify-center border border-[#0066cc]/20">
+                      <Trophy className="w-4 h-4 text-[#0066cc]" />
                     </div>
                     <h3 className="font-semibold text-[#1a1a1a] font-heading text-lg">
                       Experience Details

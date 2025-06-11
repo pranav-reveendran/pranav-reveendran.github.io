@@ -217,8 +217,8 @@ const EducationSection = () => {
     <section id="education" className="py-20 px-6 md:px-12 bg-bg">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-text mb-4" id="education-heading">
-            Education
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" id="education-heading">
+            <span className="text-[#1a1a1a]">Edu</span><span className="text-[color:var(--color-accent-dark)]">cation</span>
           </h2>
           <div className="h-1 w-20 bg-accent mx-auto rounded-full"></div>
           <p className="text-text text-opacity-80 mt-4 max-w-2xl mx-auto">

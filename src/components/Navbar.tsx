@@ -49,7 +49,7 @@ const Navbar = () => {
       const progress = (scrollY / (documentHeight - windowHeight)) * 100;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
     };
-
+      
     // Set initial active section
     handleScroll();
     

@@ -7,9 +7,7 @@
     <title>Pranav Reveendran - Data Engineer | Amazon AWS | MS Data Science</title>
     
     <!-- Resource hints for better performance -->
-    <link rel="dns-prefetch" href="//corsproxy.io">
-    <link rel="dns-prefetch" href="//medium.com">
-    <link rel="preconnect" href="//corsproxy.io" crossorigin>
+    <!-- Removed third-party DNS prefetches to avoid unwanted cookie requests -->
     
     <!-- Preconnect to Google Fonts for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,13 +46,19 @@
     <meta name="twitter:image" content="https://pranav-reveendran.com/profile-photo.jpg">
     
     <!-- Additional Meta Tags -->
-    <meta name="theme-color" content="#1e293b">
+    <meta name="theme-color" content="#bd5d3a">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https: wss:; media-src 'self' https:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()">
     
     <!-- Favicon and Icons -->
     <link rel="icon" type="image/svg+xml" href="/icon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="192x192" href="/pwa-192x192.png">
-    <link rel="manifest" href="/assets/manifest-Bpqn8cZ4.webmanifest">
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon.svg">
     
     <!-- JSON-LD Schema Markup Optimized for Job Search -->
     <script type="application/ld+json">
@@ -274,9 +278,7 @@
       ]
     }
     </script>
-
-  <link rel="manifest" href="/assets/manifest-Bpqn8cZ4.webmanifest">  <script type="module" crossorigin src="/assets/index-C7z2dLh3.js"></script>
-<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+  </head>
 
   <body>
     <!-- Skip link for accessibility -->
@@ -284,5 +286,6 @@
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <!-- Removed GPT Engineer tracking script for performance -->
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

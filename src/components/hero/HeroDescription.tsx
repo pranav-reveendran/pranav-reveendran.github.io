@@ -13,7 +13,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({ delay = 0.6 }) => {
   return (
     <div className="space-y-6">
       <motion.div
-        className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border-l-4 border-[color:var(--color-accent)]"
+        className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border-l-4 border-[#0066cc]"
         initial={shouldAnimate ? { opacity: 0, y: 10 } : undefined}
         animate={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.4, delay }}
@@ -33,19 +33,19 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({ delay = 0.6 }) => {
         transition={{ duration: 0.4, delay: delay + 0.1 }}
       >
         <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                          <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">4+</div>
+          <div className="text-2xl font-bold text-[#0066cc] mb-1">4+</div>
           <div className="text-sm text-gray-600">Years building production ML pipelines at scale</div>
         </div>
         <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                          <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">100M+</div>
+          <div className="text-2xl font-bold text-[#0066cc] mb-1">100M+</div>
           <div className="text-sm text-gray-600">Daily requests served by data architecture</div>
         </div>
         <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                          <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">60%</div>
+          <div className="text-2xl font-bold text-[#0066cc] mb-1">60%</div>
           <div className="text-sm text-gray-600">Cost reduction through optimization</div>
         </div>
         <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                          <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">50+</div>
+          <div className="text-2xl font-bold text-[#0066cc] mb-1">50+</div>
           <div className="text-sm text-gray-600">ML models deployed in production</div>
         </div>
       </motion.div>

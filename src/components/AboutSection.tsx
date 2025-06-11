@@ -63,14 +63,14 @@ const AboutSection = () => {
       {/* Sophisticated background pattern */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
         <div className="absolute inset-0" style={{
-                      backgroundImage: `radial-gradient(circle at 2px 2px, var(--color-accent) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 2px 2px, #0066cc 1px, transparent 0)`,
           backgroundSize: '32px 32px'
         }} />
       </div>
       
       {/* Floating accent elements with new blue palette */}
-              <div className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-[color:var(--color-accent)]/5 to-[color:var(--color-accent-dark)]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-20 w-24 h-24 bg-gradient-to-br from-[color:var(--color-accent-light)]/20 to-[color:var(--color-accent)]/5 rounded-full blur-2xl" />
+      <div className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-[#0066cc]/5 to-[#004499]/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-20 w-24 h-24 bg-gradient-to-br from-[#e6f2ff]/20 to-[#0066cc]/5 rounded-full blur-2xl" />
       
       {/* Golden border bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#d4af37]" />
@@ -85,9 +85,10 @@ const AboutSection = () => {
           className="text-center mb-16"
           style={{ minHeight: '120px' }}
         >
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight text-[#1a1a1a]" id="about-heading">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[0.9] tracking-tight" id="about-heading">
+            <span className="text-[#1a1a1a]">About</span>{" "}
             <span className="text-[color:var(--color-accent-dark)] relative">
-              ABOUT ME
+              Me
               <div className="absolute -bottom-2 left-0 w-full h-1 bg-[color:var(--color-accent)] rounded-full opacity-60" />
             </span>
           </h2>
@@ -220,9 +221,9 @@ const AboutSection = () => {
                 <div className="w-10 h-10 rounded-xl bg-[color:var(--color-accent-light)] flex items-center justify-center border border-[color:var(--color-accent)]/20">
                   <Star className="w-5 h-5 text-[color:var(--color-accent)]" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#1a1a1a] flex items-center gap-2">
-                  Core Technologies
-                  <span className="text-xs bg-[color:var(--color-accent)] text-white px-2 py-1 rounded-full">SKILLS</span>
+                <h3 className="text-2xl font-bold flex items-center gap-2">
+                  <span className="text-[#1a1a1a]">Core</span>{" "}
+                  <span className="text-[color:var(--color-accent-dark)]">Technologies</span>
                 </h3>
               </div>
               

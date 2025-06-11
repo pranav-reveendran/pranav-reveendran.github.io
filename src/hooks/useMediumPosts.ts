@@ -26,7 +26,7 @@ const FALLBACK_POSTS: MediumPost[] = [
     pubDate: 'December 15, 2024',
     readTime: '5 min read',
     category: ['Autonomous Vehicles', 'Data Engineering'],
-    imageUrl: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*_GQKvtIhZTwHWxV91mJAuQ.jpeg',
+    imageUrl: '/blog-1.jpeg',
     mediumUrl: 'https://medium.com/@pranav.reveendran',
     author: 'Pranav Reveendran'
   },
@@ -38,7 +38,7 @@ const FALLBACK_POSTS: MediumPost[] = [
     pubDate: 'November 28, 2024',
     readTime: '7 min read',
     category: ['Healthcare', 'Artificial Intelligence'],
-    imageUrl: 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*VqDLCFXr1IpK4_bjQlqrbQ.jpeg',
+    imageUrl: '/blog-3.jpeg',
     mediumUrl: 'https://medium.com/@pranav.reveendran',
     author: 'Pranav Reveendran'
   },
@@ -50,7 +50,7 @@ const FALLBACK_POSTS: MediumPost[] = [
     pubDate: 'November 10, 2024',
     readTime: '6 min read',
     category: ['Cloud Computing', 'Data Engineering'],
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=720&h=480&fit=crop&crop=entropy&auto=format&q=80',
+    imageUrl: '/blog-2.jpeg',
     mediumUrl: 'https://medium.com/@pranav.reveendran',
     author: 'Pranav Reveendran'
   }
@@ -83,20 +83,20 @@ const extractImageUrl = (content: string): string => {
     }
   }
   
-  // Enhanced fallback images based on content
+  // Enhanced fallback images based on content - using local images to avoid third-party cookies
   const lowerContent = content.toLowerCase();
   if (lowerContent.includes('autonomous') || lowerContent.includes('vehicle')) {
-    return 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*_GQKvtIhZTwHWxV91mJAuQ.jpeg';
+    return '/blog-1.jpeg';
   } else if (lowerContent.includes('ai') || lowerContent.includes('gpt')) {
-    return 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*1SXJZUnLRqhdwTmlkZIgPw.jpeg';
+    return '/blog-2.jpeg';
   } else if (lowerContent.includes('health') || lowerContent.includes('asthma')) {
-    return 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*VqDLCFXr1IpK4_bjQlqrbQ.jpeg';
+    return '/blog-3.jpeg';
   } else if (lowerContent.includes('data') || lowerContent.includes('engineering')) {
-    return 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=720&h=480&fit=crop&crop=entropy&auto=format&q=80';
+    return '/blog-1.jpeg';
   }
   
-  // Default fallback
-  return 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*_GQKvtIhZTwHWxV91mJAuQ.jpeg';
+  // Default fallback - local image
+  return '/blog-1.jpeg';
 };
 
 // Function to extract plain text excerpt from HTML content

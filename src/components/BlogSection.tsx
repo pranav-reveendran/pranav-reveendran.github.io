@@ -16,7 +16,7 @@ const fallbackPosts: MediumPost[] = [
     pubDate: "April 15, 2024",
     readTime: "8 min read",
     category: ["Autonomous Vehicles"],
-    imageUrl: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*_GQKvtIhZTwHWxV91mJAuQ.jpeg",
+    imageUrl: "/blog-1.jpeg",
     mediumUrl: "https://medium.com/@pranav.reveendran/real-time-autonomous-vehicle-remote-assistance-2399d77ce8f6",
     content: "",
     author: "Pranav Reveendran"
@@ -28,7 +28,7 @@ const fallbackPosts: MediumPost[] = [
     pubDate: "April 10, 2024",
     readTime: "6 min read",
     category: ["Artificial Intelligence"],
-    imageUrl: "https://miro.medium.com/v2/resize:fit:640/format:webp/1*1SXJZUnLRqhdwTmlkZIgPw.jpeg",
+    imageUrl: "/blog-2.jpeg",
     mediumUrl: "https://medium.com/@pranav.reveendran/auto-gpt-empowering-autonomous-ai-agents-1e15b0c7ddd8",
     content: "",
     author: "Pranav Reveendran"
@@ -40,7 +40,7 @@ const fallbackPosts: MediumPost[] = [
     pubDate: "April 5, 2024",
     readTime: "7 min read",
     category: ["Healthcare"],
-    imageUrl: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*VqDLCFXr1IpK4_bjQlqrbQ.jpeg",
+    imageUrl: "/blog-3.jpeg",
     mediumUrl: "https://medium.com/@pranav.reveendran/asthmacare-revolutionizing-public-health-data-science-5a61ada7c8e9",
     content: "",
     author: "Pranav Reveendran"
@@ -84,7 +84,10 @@ const BlogSection = () => {
     <section id="blogs" className="py-20 px-6 md:px-12 bg-surface">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-text mb-4" id="blog-heading">Blog</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" id="blog-heading">
+            <span className="text-[#1a1a1a]">Blog</span>{" "}
+            <span className="text-[color:var(--color-accent-dark)]">Posts</span>
+          </h2>
           <p className="text-text text-opacity-80 mb-8">Insights and thoughts on data engineering, AI, and technology</p>
           <div className="h-1 w-20 bg-accent mx-auto rounded-full"></div>
         </div>
@@ -124,35 +127,35 @@ const BlogSection = () => {
         )}
 
         {/* Category filters */}
-        {!loading && (
-          <div className="flex flex-wrap gap-2 justify-center mb-12">
-            {categories.map((category) => (
-              <Badge
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                className={cn(
-                  "cursor-pointer px-4 py-2 text-sm",
-                  selectedCategory === category 
-                    ? "bg-accent hover:bg-accent/90 text-white" 
-                    : "hover:bg-accent/10 text-text border-border"
-                )}
-                onClick={() => setSelectedCategory(category)}
-                role="button"
-                aria-pressed={selectedCategory === category}
-                aria-label={`Filter by ${category} category`}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setSelectedCategory(category);
-                  }
-                }}
-              >
-                {category}
-              </Badge>
-            ))}
-          </div>
-        )}
+                  {!loading && (
+            <div className="flex flex-wrap gap-2 justify-center mb-12">
+              {categories.map((category) => (
+                <Badge
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  className={cn(
+                    "cursor-pointer px-4 py-2 text-sm",
+                    selectedCategory === category 
+                      ? "bg-accent hover:bg-accent/90 text-white" 
+                      : "hover:bg-accent/10 text-text border-border"
+                  )}
+                  onClick={() => setSelectedCategory(category)}
+                  role="button"
+                  aria-pressed={selectedCategory === category}
+                  aria-label={`Filter by ${category} category`}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setSelectedCategory(category);
+                    }
+                  }}
+                >
+                  {category}
+                </Badge>
+              ))}
+            </div>
+          )}
 
         {/* Blog posts grid */}
         {!loading && (
@@ -170,7 +173,7 @@ const BlogSection = () => {
                       className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*_GQKvtIhZTwHWxV91mJAuQ.jpeg';
+                        target.src = '/blog-1.jpeg';
                       }}
                     />
                   </div>
