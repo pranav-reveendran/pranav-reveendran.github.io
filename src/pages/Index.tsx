@@ -35,13 +35,13 @@ const Index = () => {
   return (
     <TechHighlightProvider>
       <div 
-        className="min-h-screen relative overflow-hidden bg-white text-gray-900"
+        className="min-h-screen relative overflow-hidden bg-surface text-text"
       >
         {/* Fixed background layer with standard opacity */}
         <div className="fixed inset-0 w-full h-full z-0 overflow-hidden">
           {/* Standard background color with opacity */}
           <div 
-            className="absolute inset-0 bg-white opacity-95" 
+            className="absolute inset-0 bg-surface opacity-95" 
           />
           {/* Three.js background with standard opacity */}
           <div className="absolute inset-0" style={{ opacity: 0.03 }}>
