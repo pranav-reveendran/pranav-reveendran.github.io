@@ -476,7 +476,7 @@ const SkillTreeBranch: React.FC<SkillTreeBranchProps> = ({ nodes, depth }) => {
 
 const AdvancedSkillTree: React.FC = () => {
   return (
-    <section id="skills" className="py-20 px-6 md:px-12 bg-white relative">
+    <section id="skills" className="py-20 px-6 md:px-12 bg-surface relative">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -491,7 +491,7 @@ const AdvancedSkillTree: React.FC = () => {
               <span>Advanced Skills</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-4xl md:text-5xl font-bold text-text">
               Technical <span className="text-purple-600">Expertise</span>
             </h2>
             
@@ -514,11 +514,11 @@ const AdvancedSkillTree: React.FC = () => {
             <div className="text-sm text-gray-500">Core Skills</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600">8</div>
+            <div className="text-3xl font-bold text-accent">8</div>
             <div className="text-sm text-gray-500">Expert Areas</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-600">15+</div>
+            <div className="text-3xl font-bold text-accent">15+</div>
             <div className="text-sm text-gray-500">Learning Goals</div>
           </div>
         </motion.div>
@@ -528,7 +528,7 @@ const AdvancedSkillTree: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm"
+                      className="bg-surface border border-gray-200 rounded-xl p-6 shadow-sm"
         >
           <SkillTreeBranch nodes={skillTreeData} depth={0} />
         </motion.div>
@@ -555,11 +555,11 @@ const AdvancedSkillTree: React.FC = () => {
               <span className="text-sm text-gray-600">Learning Target</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Zap className="w-4 h-4 text-red-500" />
+              <Zap className="w-4 h-4 text-accentDark" />
               <span className="text-sm text-gray-600">High Priority</span>
             </div>
             <div className="flex items-center space-x-2">
-              <BookOpen className="w-4 h-4 text-purple-500" />
+              <BookOpen className="w-4 h-4 text-accent" />
               <span className="text-sm text-gray-600">Currently Learning</span>
             </div>
           </div>
