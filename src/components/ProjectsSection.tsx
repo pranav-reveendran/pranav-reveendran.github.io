@@ -190,7 +190,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
   return (
     <Card 
       ref={cardRef}
-              className="project-card group relative overflow-hidden bg-surface border border-gray-200 hover:border-accent/50 transition-all duration-500 hover:shadow-xl hover:shadow-accent/10 hover:-translate-y-1 h-full flex flex-col"
+      className="project-card group relative overflow-hidden bg-white border border-gray-200 hover:border-[var(--color-primary)]/50 transition-all duration-500 hover:shadow-xl hover:shadow-[var(--color-primary)]/10 hover:-translate-y-1 h-full flex flex-col"
     >
       {/* Gradient overlay for visual interest */}
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/5 via-transparent to-[var(--color-primary)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -202,7 +202,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               {getProjectIcon(project)}
             </div>
             <div className="flex-1">
-              <CardTitle className="text-xl font-bold text-text group-hover:text-accent transition-colors duration-300">
+              <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors duration-300">
                 {project.title}
               </CardTitle>
               <div className="flex items-center space-x-2 mt-1">
@@ -386,7 +386,7 @@ const ProjectsSection = () => {
   }, [shouldAnimate, filteredProjects]);
 
   return (
-    <section id="projects" className="py-20 px-6 md:px-12 bg-surface relative min-h-screen">
+    <section id="projects" className="py-20 px-6 md:px-12 bg-white relative min-h-screen">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 right-20 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
@@ -401,7 +401,7 @@ const ProjectsSection = () => {
             <span>Featured Work</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-text" id="projects-heading">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900" id="projects-heading">
                           Project <span className="text-[color:var(--color-accent)]">Showcase</span>
           </h2>
           
@@ -449,7 +449,7 @@ const ProjectsSection = () => {
                   placeholder="Search projects..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="bg-gray-100 border border-gray-200 rounded-lg px-4 py-2 pl-10 text-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all duration-300 w-64"
+                  className="bg-gray-100 border border-gray-200 rounded-lg px-4 py-2 pl-10 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent)]/50 focus:border-[color:var(--color-accent)] transition-all duration-300 w-64"
                 />
                 <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-600 dark:text-gray-300" />
               </div>
@@ -481,7 +481,7 @@ const ProjectsSection = () => {
             <div className="w-24 h-24 mx-auto mb-4 opacity-20">
               <Filter className="w-full h-full text-gray-600 dark:text-gray-300" />
             </div>
-            <h3 className="text-xl font-semibold text-text mb-2">No projects found</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">No projects found</h3>
             <p className="text-gray-600">Try adjusting your search or filter criteria</p>
           </div>
         )}

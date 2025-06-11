@@ -216,8 +216,8 @@ const ExperienceSection = () => {
     >
       <Card className={`relative overflow-hidden backdrop-blur-sm transition-all duration-300 flex flex-col ${
         isActive 
-                                ? 'bg-surface ring-2 ring-[color:var(--color-accent)]/40 shadow-2xl shadow-[color:var(--color-accent)]/10 border-[color:var(--color-accent)]/60 scale-[1.02]'
-              : 'bg-surface border-[#e5e5e5] hover:border-[color:var(--color-accent)]/30 hover:shadow-xl hover:shadow-[color:var(--color-accent)]/5 hover:scale-[1.01]'
+                  ? 'bg-white ring-2 ring-[color:var(--color-accent)]/40 shadow-2xl shadow-[color:var(--color-accent)]/10 border-[color:var(--color-accent)]/60 scale-[1.02]'
+        : 'bg-white border-[#e5e5e5] hover:border-[color:var(--color-accent)]/30 hover:shadow-xl hover:shadow-[color:var(--color-accent)]/5 hover:scale-[1.01]'
       } border-2 rounded-2xl cursor-pointer`} style={{ height: '300px', minHeight: '300px', maxHeight: '300px' }}>
         
         {/* Colorblind-friendly header accent */}
@@ -454,7 +454,7 @@ const ExperienceSection = () => {
   );
 
   return (
-    <section ref={sectionRef} className="min-h-screen bg-surface pt-16 pb-16 relative overflow-hidden" id="experience">
+    <section ref={sectionRef} className="min-h-screen bg-white pt-16 pb-16 relative overflow-hidden" id="experience">
       <FloatingElements />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -477,7 +477,7 @@ const ExperienceSection = () => {
             {/* Professional Experience Badge */}
             <div className="inline-flex items-center gap-3 mb-4 px-6 py-3 rounded-full border-2 border-[color:var(--color-accent)]/30 bg-[color:var(--color-accent)]/10 backdrop-blur-sm">
               <Briefcase className="w-5 h-5 text-[color:var(--color-accent)]" />
-              <span className="text-sm font-semibold text-accent tracking-wider">
+              <span className="text-sm font-semibold text-[color:var(--color-accent)] uppercase tracking-wider">
                 4+ YOE PROFESSIONAL EXPERIENCE
               </span>
               <Star className="w-4 h-4 text-[color:var(--color-accent)]" />
@@ -493,7 +493,7 @@ const ExperienceSection = () => {
               <div className="flex items-center gap-3 mb-4">
                 <TrendingUp className="w-6 h-6 text-[color:var(--color-accent)]" />
               <div>
-                <h3 className="text-lg font-bold text-text">Career Progress</h3>
+                <h3 className="text-lg font-bold text-gray-900">Career Progress</h3>
                 <p className="text-sm text-gray-600">Professional growth metrics</p>
               </div>
             </div>
@@ -509,7 +509,7 @@ const ExperienceSection = () => {
               
               <div className="text-center">
                 <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br from-green-100 to-green-200/60 flex items-center justify-center">
-                  <Building2 className="w-6 h-6 text-accent" />
+                  <Building2 className="w-6 h-6 text-green-600" />
                 </div>
                 <div className="text-2xl font-bold text-gray-800 mb-1">{companies.length}</div>
                 <p className="text-sm text-gray-600 font-medium">Companies</p>
@@ -526,10 +526,10 @@ const ExperienceSection = () => {
           </div>
 
           {/* Search & Filter Section */}
-          <div className="bg-surface border border-gray-200 rounded-2xl p-6 mb-6">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-6">
             <div className="flex items-center gap-3 mb-4">
                               <Search className="w-5 h-5 text-[color:var(--color-accent)]" />
-              <h3 className="text-lg font-semibold text-text">Search & Filter Experiences</h3>
+              <h3 className="text-lg font-semibold text-gray-900">Search & Filter Experiences</h3>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -539,7 +539,7 @@ const ExperienceSection = () => {
                   placeholder="Search by role, company, or skills..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12 text-base border-gray-200 focus:border-[color:var(--color-accent)] bg-surface"
+                  className="pl-10 h-12 text-base border-gray-200 focus:border-[color:var(--color-accent)] bg-white"
                 />
               </div>
               <Select value={selectedCompany} onValueChange={setSelectedCompany}>

@@ -62,9 +62,9 @@ const KintsugiCard: React.FC<KintsugiCardProps> = ({
         >
           <defs>
             <linearGradient id={`repair-${crackDirection}`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFD700" stopOpacity={getRepairOpacity()} />
-              <stop offset="50%" stopColor="#FFA500" stopOpacity={getRepairOpacity() * 1.3} />
-              <stop offset="100%" stopColor="#DAA520" stopOpacity={getRepairOpacity()} />
+              <stop offset="0%" stopColor="var(--color-accent)" stopOpacity={getRepairOpacity()} />
+              <stop offset="50%" stopColor="var(--color-accent-light)" stopOpacity={getRepairOpacity() * 1.3} />
+              <stop offset="100%" stopColor="var(--color-accent-dark)" stopOpacity={getRepairOpacity()} />
             </linearGradient>
             
             <filter id={`glow-${crackDirection}`}>
@@ -154,20 +154,20 @@ const KintsugiCard: React.FC<KintsugiCardProps> = ({
           >
             {crackDirection === 'diagonal' && (
               <>
-                <circle cx="65" cy="35" r="1" fill="#FFD700" opacity={getRepairOpacity() * 1.5} />
-                <circle cx="35" cy="65" r="1" fill="#FFD700" opacity={getRepairOpacity() * 1.5} />
+                <circle cx="65" cy="35" r="1" fill="var(--color-accent)" opacity={getRepairOpacity() * 1.5} />
+                <circle cx="35" cy="65" r="1" fill="var(--color-accent)" opacity={getRepairOpacity() * 1.5} />
               </>
             )}
             {crackDirection === 'vertical' && (
               <>
-                <circle cx="50" cy="30" r="1" fill="#FFD700" opacity={getRepairOpacity() * 1.5} />
-                <circle cx="50" cy="70" r="1" fill="#FFD700" opacity={getRepairOpacity() * 1.5} />
+                <circle cx="50" cy="30" r="1" fill="var(--color-accent)" opacity={getRepairOpacity() * 1.5} />
+                <circle cx="50" cy="70" r="1" fill="var(--color-accent)" opacity={getRepairOpacity() * 1.5} />
               </>
             )}
             {crackDirection === 'horizontal' && (
               <>
-                <circle cx="30" cy="50" r="1" fill="#FFD700" opacity={getRepairOpacity() * 1.5} />
-                <circle cx="70" cy="50" r="1" fill="#FFD700" opacity={getRepairOpacity() * 1.5} />
+                <circle cx="30" cy="50" r="1" fill="var(--color-accent)" opacity={getRepairOpacity() * 1.5} />
+                <circle cx="70" cy="50" r="1" fill="var(--color-accent)" opacity={getRepairOpacity() * 1.5} />
               </>
             )}
           </motion.g>

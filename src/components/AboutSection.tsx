@@ -127,9 +127,9 @@ const AboutSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               style={{ minHeight: '200px' }}
             >
-              <div className="bg-surface border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-accent/30 transition-all duration-300 relative">
+              <div className="bg-white border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-[color:var(--color-accent)]/30 transition-all duration-300 relative">
                 {/* Pattern differentiation for colorblind users */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-accent rounded-t-2xl" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-[color:var(--color-accent)] rounded-t-2xl" />
                 
                 <div className="space-y-6">
                                       <div className="flex items-center gap-3">
@@ -211,9 +211,9 @@ const AboutSection = () => {
           className="mt-16"
           style={{ minHeight: '300px' }}
         >
-          <div className="bg-surface border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-accent/30 transition-all duration-300 relative">
+          <div className="bg-white border-2 border-[#e5e5e5] rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-[color:var(--color-accent)]/30 transition-all duration-300 relative">
             {/* Pattern differentiation */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-accent rounded-t-2xl" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-[color:var(--color-accent)] rounded-t-2xl" />
             
             <div className="space-y-8">
               <div className="flex items-center justify-center gap-3">

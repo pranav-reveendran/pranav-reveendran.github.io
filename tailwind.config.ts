@@ -83,14 +83,11 @@ export default {
           foreground: "var(--text)",
         },
         
-        // Core design tokens - Claude Theme Variables
-        bg: "var(--color-bg)",
-        surface: "var(--color-surface)",
-        text: "var(--color-text-primary)",
-        accent: "var(--color-accent)",
-        accentDark: "var(--color-accent-dark)",
-        accentLight: "var(--color-accent-light)",
-        cta: "var(--color-cta)",
+        // Core design tokens
+        bg: "var(--bg)",
+        surface: "var(--surface)",
+        text: "var(--text)",
+        accent: "var(--accent)",
         
         // Background system
         background: {

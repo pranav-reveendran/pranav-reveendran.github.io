@@ -38,7 +38,7 @@ const HeroButtons: React.FC = () => {
         <span className="font-medium">🚀 View Projects</span>
         
         {/* Magnetic effect background */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-accent-dark)] to-[var(--color-accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[inherit]" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#c76646] to-[color:var(--color-accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[inherit]" />
       </motion.a>
 
       {/* Secondary CTA - Download Resume */}
@@ -56,7 +56,7 @@ const HeroButtons: React.FC = () => {
         <span className="font-medium">📄 Download Resume</span>
         
         {/* Golden shimmer effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--color-accent-light)]/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-[inherit]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#e2ae97]/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 rounded-[inherit]" />
       </motion.a>
 
       {/* Tertiary CTA - Schedule Call */}
@@ -64,7 +64,7 @@ const HeroButtons: React.FC = () => {
         href="https://topmate.io/pranav_reveendran"
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative inline-flex items-center justify-center gap-2 cursor-pointer bg-transparent border-2 border-[var(--color-accent)] text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300 font-medium px-6 py-3 interactive"
+        className="group relative inline-flex items-center justify-center gap-2 cursor-pointer bg-transparent border-2 border-[#6c5dac] text-[#6c5dac] hover:bg-[#6c5dac] hover:text-white transition-all duration-300 font-medium px-6 py-3 interactive"
         variants={buttonVariants}
         initial="initial"
         animate="animate"
@@ -76,7 +76,7 @@ const HeroButtons: React.FC = () => {
         <span className="font-medium">💬 Schedule Call</span>
         
         {/* Glow effect */}
-        <div className="absolute inset-0 bg-[var(--color-accent)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[inherit]" />
+        <div className="absolute inset-0 bg-[#6c5dac]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[inherit]" />
       </motion.a>
     </motion.div>
   );

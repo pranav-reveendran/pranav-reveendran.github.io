@@ -121,11 +121,11 @@ const KintsugiCrackPattern: React.FC = () => {
         />
         
         <defs>
-          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#d4af37" stopOpacity="0.3" />
-            <stop offset="50%" stopColor="#ffd700" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#d4af37" stopOpacity="0.3" />
-          </linearGradient>
+          <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="var(--color-accent-light)" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="var(--color-accent)" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="var(--color-accent-light)" stopOpacity="0.3" />
+          </radialGradient>
         </defs>
       </svg>
     </div>
@@ -157,7 +157,7 @@ const HeroSection: React.FC = () => {
   }
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[var(--color-surface)] via-[var(--color-bg)] to-[var(--color-surface)] flex items-center justify-center">
+          <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[color:var(--color-bg)] via-[color:var(--color-surface)] to-[color:var(--color-surface)] flex items-center justify-center">
       {/* Kintsugi background pattern */}
       <KintsugiCrackPattern />
       
@@ -205,20 +205,20 @@ const HeroSection: React.FC = () => {
                 transition={{ delay: 0.6, duration: 0.6 }}
                 style={{ minHeight: '180px' }}
               >
-                <div className="bg-surface p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-accent mb-1">4+</div>
+                <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">4+</div>
                   <div className="text-sm text-gray-600">Years building production ML pipelines</div>
                 </div>
-                <div className="bg-surface p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-accent mb-1">100M+</div>
+                <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">100M+</div>
                   <div className="text-sm text-gray-600">Daily requests served</div>
                 </div>
-                <div className="bg-surface p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-accent mb-1">60%</div>
+                <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">60%</div>
                   <div className="text-sm text-gray-600">Cost reduction achieved</div>
                 </div>
-                <div className="bg-surface p-4 rounded-lg border border-gray-200 shadow-sm">
-                  <div className="text-2xl font-bold text-accent mb-1">50+</div>
+                <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                  <div className="text-2xl font-bold text-[color:var(--color-accent)] mb-1">50+</div>
                   <div className="text-sm text-gray-600">ML models in production</div>
                 </div>
               </motion.div>
@@ -275,7 +275,7 @@ const HeroSection: React.FC = () => {
                   </div>
                   <div className="text-center p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
                     <div className="text-xs text-gray-500">💼 Status</div>
-                    <div className="font-semibold text-sm text-accent">Open to L4/L5</div>
+                    <div className="font-semibold text-sm text-green-600">Open to L4/L5</div>
                   </div>
                 </div>
 
