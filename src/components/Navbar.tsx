@@ -132,13 +132,13 @@ const Navbar = () => {
       <header
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 md:px-12',
-          isScrolled ? 'bg-[#ffffff] shadow-lg border-b border-[#edcdbf]' : 'bg-transparent'
+          isScrolled ? 'bg-[var(--color-surface)] shadow-lg border-b border-[var(--color-accent-light)]' : 'bg-transparent'
         )}
       >
         <div className="container mx-auto flex items-center justify-between">
           <a 
             href="#home" 
-            className="text-2xl font-display font-bold text-[#2d264a] hover:text-[#6c5dac] transition-colors p-2"
+            className="text-2xl font-display font-bold text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors p-2"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('#home');
@@ -156,8 +156,8 @@ const Navbar = () => {
                 className={cn(
                   "kintsugi-nav-item relative inline-flex items-center px-3 py-2 text-sm font-medium transition-all duration-300",
                   activeSection === item.href.slice(1)
-                    ? "text-[#6c5dac] kintsugi-text-gold" 
-                    : "text-[#41376c] hover:text-[#6c5dac] hover:kintsugi-text-gold"
+                    ? "text-[var(--color-accent)] kintsugi-text-gold" 
+                    : "text-[var(--color-text-primary)] hover:text-[var(--color-accent)] hover:kintsugi-text-gold"
                 )}
                 onClick={(e) => {
                   e.preventDefault();
@@ -187,7 +187,7 @@ const Navbar = () => {
             
             {/* Mobile Menu Button */}
             <button 
-              className="lg:hidden text-[#2d264a] hover:text-[#6c5dac] transition-colors p-2 min-h-11 min-w-11" 
+              className="lg:hidden text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors p-2 min-h-11 min-w-11" 
               onClick={toggleMobileMenu}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
@@ -198,15 +198,15 @@ const Navbar = () => {
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="lg:hidden absolute top-full left-0 right-0 bg-[#ffffff] p-6 shadow-lg border-b border-[#edcdbf] animate-slide-in-right">
+            <div className="lg:hidden absolute top-full left-0 right-0 bg-[var(--color-surface)] p-6 shadow-lg border-b border-[var(--color-accent-light)] animate-slide-in-right">
               <ul className="flex flex-col space-y-2">
                 {navItems.map((item) => (
                   <li key={item.name}>
                     <a
                       href={item.href}
                       className={cn(
-                        "nav-link block font-medium flex items-center gap-2 text-[#41376c] py-2 min-h-11 px-4 rounded-lg transition-all duration-200",
-                        activeSection === item.href.substring(1) && "bg-[#6c5dac] text-white"
+                        "nav-link block font-medium flex items-center gap-2 text-[var(--color-text-primary)] py-2 min-h-11 px-4 rounded-lg transition-all duration-200",
+                        activeSection === item.href.substring(1) && "bg-[var(--color-accent)] text-white"
                       )}
                       onClick={(e) => {
                         e.preventDefault();

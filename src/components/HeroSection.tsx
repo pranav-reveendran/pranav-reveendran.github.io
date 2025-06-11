@@ -157,7 +157,7 @@ const HeroSection: React.FC = () => {
   }
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#ffffff] via-[#fafaf9] to-[#f5f4f2] flex items-center justify-center">
+    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[var(--color-surface)] via-[var(--color-bg)] to-[var(--color-surface)] flex items-center justify-center">
       {/* Kintsugi background pattern */}
       <KintsugiCrackPattern />
       
