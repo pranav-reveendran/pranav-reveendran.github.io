@@ -20,72 +20,9 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      devOptions: {
-        enabled: false, // Disable PWA in dev mode to avoid conflicts
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,webp,woff2}'],
-        cleanupOutdatedCaches: true,
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB limit instead of default 2 MB
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-cache',
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
-              }
-            }
-          },
-          {
-            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-static-cache',
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
-              }
-            }
-          }
-        ]
-      },
-      includeAssets: ['favicon.ico', 'robots.txt', 'icon.svg'],
-      manifest: {
-        name: 'Pranav Reveendran Portfolio',
-        short_name: 'PR Portfolio',
-        description: 'Pranav Reveendran\'s professional portfolio showcasing expertise in Data Engineering, Machine Learning, and Distributed Systems',
-        theme_color: '#bd5d3a',
-        background_color: '#eeece2',
-        display: 'standalone',
-        start_url: '/',
-        scope: '/',
-        icons: [
-          {
-            src: 'icon.svg',
-            sizes: '192x192',
-            type: 'image/svg+xml'
-          },
-          {
-            src: 'icon.svg',
-            sizes: '512x512',
-            type: 'image/svg+xml'
-          },
-          {
-            src: 'icon.svg',
-            sizes: '512x512',
-            type: 'image/svg+xml',
-            purpose: 'maskable'
-          }
-        ]
-      }
-    })
+    mode === 'development' && componentTagger(),
+    // Temporarily disable PWA to fix static asset loading issues
+    // This can be re-enabled later after ensuring proper asset caching
   ].filter(Boolean),
   resolve: {
     alias: {
